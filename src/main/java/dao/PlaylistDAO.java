@@ -9,76 +9,15 @@ import java.util.List;
 
 public class PlaylistDAO {
 
-    public Playlist getOne(int id) {
-
-        String QUERY = "SELECT id-playlist, name " +
-                "FROM playlist " +
-                "WHERE id-playlist = ?;";
-
-        Playlist playlist = null;
-
-        try (Connection connection = DriverManager.
-                getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
-
-             PreparedStatement preparedStatement = connection.
-                     prepareStatement(QUERY)){
-
-            preparedStatement.setString(1, String.valueOf(id));
-
-            System.out.println(preparedStatement);
-
-            ResultSet rs =  preparedStatement.executeQuery();
-            while(rs.next()) {
-                playlist = new Playlist();
-                playlist.setId(rs.getInt("id-playlist"));
-                playlist.setName(rs.getString("name"));
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-
-        return playlist;
-    }
-
-    public List<Playlist> list() {
-
-        String QUERY = "SELECT id-playlist, name " +
-                "FROM playlist ";
-
-        List<Playlist> playlists = new ArrayList<>();
-
-        try (Connection connection = DriverManager.
-                getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
-
-             PreparedStatement preparedStatement = connection.
-                     prepareStatement(QUERY);){
-
-            System.out.println(preparedStatement);
-
-            ResultSet rs =  preparedStatement.executeQuery();
-            while(rs.next()) {
-                Playlist playlist = new Playlist();
-                playlist.setId(rs.getInt("id-playlist"));
-                playlist.setName(rs.getString("name"));
-                playlists.add(playlist);
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-
-        return playlists;
-    }
-
-    public Playlist create(Playlist playlist) {
+    //  CREATE
+    public Playlist create(Playlist playlist) throws SQLException {
         String QUERY = "INSERT INTO Playlist (name) " +
                 "VALUES( ? );";
         try (Connection connection = DriverManager.
                 getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
 
              PreparedStatement preparedStatement = connection.
-                     prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);){
+                     prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);) {
 
 
             preparedStatement.setString(1, playlist.getName());
@@ -88,27 +27,122 @@ public class PlaylistDAO {
             preparedStatement.executeUpdate();
 
             ResultSet rs = preparedStatement.getGeneratedKeys();
-            while(rs.next()) {
+            while (rs.next()) {
                 playlist.setId(rs.getInt(1));
             }
 
         } catch (SQLException e) {
-            System.out.println(e);
-            return null;
+            throw e;
         }
         return playlist;
     }
 
-    public boolean update(int id, Playlist playlist) {
-        String QUERY = "UPDATE Playlist" +
-                "SET name = ? " +
-                "WHERE id-playlist = ?;";
+    //  READ
+    public Playlist getOne(int id) throws SQLException {
+
+        String QUERY = "SELECT id_playlist, name " +
+                "FROM playlist " +
+                "WHERE id_playlist = ?;";
+
+        Playlist playlist = null;
 
         try (Connection connection = DriverManager.
                 getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
 
              PreparedStatement preparedStatement = connection.
-                     prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);){
+                     prepareStatement(QUERY)) {
+
+            preparedStatement.setString(1, String.valueOf(id));
+
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                playlist = new Playlist();
+                playlist.setId(rs.getInt("id_playlist"));
+                playlist.setName(rs.getString("name"));
+            }
+
+        } catch (SQLException e) {
+            throw e;
+        }
+
+        return playlist;
+    }
+
+    public List<Playlist> list() throws SQLException {
+
+        String QUERY = "SELECT id_playlist, name " +
+                "FROM playlist ";
+
+        List<Playlist> playlists = new ArrayList<>();
+
+        try (Connection connection = DriverManager.
+                getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
+
+             PreparedStatement preparedStatement = connection.
+                     prepareStatement(QUERY);) {
+
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Playlist playlist = new Playlist();
+                playlist.setId(rs.getInt("id_playlist"));
+                playlist.setName(rs.getString("name"));
+                playlists.add(playlist);
+            }
+
+        } catch (SQLException e) {
+            throw e;
+        }
+
+        return playlists;
+    }
+
+    public List<Playlist> find(String data) throws SQLException {
+        String QUERY = "SELECT id_playlist, name " +
+                "FROM playlist " +
+                "WHERE name LIKE '%?%';";
+
+        List<Playlist> playlists = new ArrayList<>();
+
+        try (Connection connection = DriverManager.
+                getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
+
+             PreparedStatement preparedStatement = connection.
+                     prepareStatement(QUERY);) {
+
+            preparedStatement.setString(1, data);
+
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Playlist playlist = new Playlist();
+                playlist.setId(rs.getInt("id_playlist"));
+                playlist.setName(rs.getString("name"));
+                playlists.add(playlist);
+            }
+
+        } catch (SQLException e) {
+            throw e;
+        }
+
+        return playlists;
+    }
+
+    //  UPDATE
+    public boolean update(int id, Playlist playlist) throws SQLException {
+        String QUERY = "UPDATE Playlist" +
+                "SET name = ? " +
+                "WHERE id_playlist = ?;";
+
+        try (Connection connection = DriverManager.
+                getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
+
+             PreparedStatement preparedStatement = connection.
+                     prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);) {
 
             preparedStatement.setString(1, playlist.getName());
             preparedStatement.setString(2, String.valueOf(id));
@@ -116,31 +150,30 @@ public class PlaylistDAO {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println(e);
-            return false;
+            throw e;
         }
         return true;
     }
 
-    public boolean delete(int id) {
+    // DELETE
+    public boolean delete(int id) throws SQLException {
         String QUERY = "DELETE FROM Playlist" +
-                "WHERE id-playlist = ?;";
+                "WHERE id_playlist = ?;";
 
         try (Connection connection = DriverManager.
                 getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
 
              PreparedStatement preparedStatement = connection.
-                     prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);){
+                     prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);) {
 
             preparedStatement.setString(1, String.valueOf(id));
 
             int result = preparedStatement.executeUpdate();
 
-            System.out.println("Numero of rows affected " + result);
+            System.out.println("Number of rows affected " + result);
 
         } catch (SQLException e) {
-            System.out.println(e);
-            return false;
+            throw e;
         }
         return true;
     }
