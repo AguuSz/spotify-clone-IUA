@@ -371,29 +371,6 @@ LOCK TABLES `prefer` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `song`
---
-
-DROP TABLE IF EXISTS `song`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `song` (
-  `id_song` int NOT NULL,
-  PRIMARY KEY (`id_song`),
-  CONSTRAINT `fk_content_song` FOREIGN KEY (`id_song`) REFERENCES `content` (`id_content`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `song`
---
-
-LOCK TABLES `song` WRITE;
-/*!40000 ALTER TABLE `song` DISABLE KEYS */;
-/*!40000 ALTER TABLE `song` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `uploads`
 --
 
@@ -402,15 +379,15 @@ DROP TABLE IF EXISTS `uploads`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `uploads` (
   `id_artist` int NOT NULL,
-  `id_song` int NOT NULL,
+  `id_content` int NOT NULL,
   `id_album` int NOT NULL,
   `date` datetime NOT NULL,
-  PRIMARY KEY (`id_artist`,`id_song`,`id_album`),
+  PRIMARY KEY (`id_artist`,`id_content`,`id_album`),
   KEY `fk_album_uploads_idx` (`id_album`),
-  KEY `fk_content_uploads_idx` (`id_song`),
+  KEY `fk_content_uploads_idx` (`id_content`),
   CONSTRAINT `fk_album_uploads` FOREIGN KEY (`id_album`) REFERENCES `album` (`id_album`),
   CONSTRAINT `fk_artist_uploads` FOREIGN KEY (`id_artist`) REFERENCES `artist` (`id_artist`),
-  CONSTRAINT `fk_content_uploads` FOREIGN KEY (`id_song`) REFERENCES `content` (`id_content`)
+  CONSTRAINT `fk_content_uploads` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
