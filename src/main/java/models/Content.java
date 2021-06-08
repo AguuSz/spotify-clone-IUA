@@ -1,7 +1,5 @@
 package main.java.models;
 
-import main.java.dto.ContentDTO;
-
 import java.util.List;
 import java.util.Objects;
 

@@ -1,8 +1,11 @@
 package main.java;
 
+import main.java.models.Content;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world");
+        Content c = new Content();
+        System.out.println(c.toString());
     }
 
 

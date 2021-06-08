@@ -1,6 +1,7 @@
 package main.java.dao;
 
 import main.java.conf.JDBCUtil;
+import main.java.dto.ContentDTO;
 import main.java.models.Playlist;
 
 import java.sql.*;
@@ -73,7 +74,7 @@ public class PlaylistDAO {
     public List<Playlist> list() throws SQLException {
 
         String QUERY = "SELECT id_playlist, name " +
-                "FROM playlist ";
+                "FROM playlist;";
 
         List<Playlist> playlists = new ArrayList<>();
 
@@ -154,7 +155,9 @@ public class PlaylistDAO {
         }
         return true;
     }
+   // public boolean insertContent(int id, ContentDTO dto){
 
+    //} //TODO
     // DELETE
     public boolean delete(int id) throws SQLException {
         String QUERY = "DELETE FROM Playlist" +

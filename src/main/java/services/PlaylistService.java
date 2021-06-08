@@ -1,6 +1,7 @@
 package main.java.services;
 
 import main.java.dao.PlaylistDAO;
+import main.java.dto.ContentDTO;
 import main.java.dto.PlaylistDTO;
 import main.java.exception.ValidationException;
 import main.java.interfaces.IPlaylistService;
@@ -30,6 +31,11 @@ public class PlaylistService implements IPlaylistService {
     public boolean update(int id, PlaylistDTO dto) throws SQLException {
         Playlist pll = new Playlist(dto);
         return dao.update(id, pll);
+    }
+
+    @Override
+    public boolean insertContent(int id, ContentDTO dto) {
+        return dao.insertContent(id, dto);
     }
 
     @Override

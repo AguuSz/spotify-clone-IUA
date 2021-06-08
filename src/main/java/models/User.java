@@ -16,7 +16,7 @@ public class User {
     private String country;
     private List<User> friends;
     private List<Device> devices;
-    private List<Language> languagesPreferences;
+    private List<String> languagesPreferences;
     private List<Playlist> playlists;
 
     public User (UserDTO dto){
@@ -82,6 +82,42 @@ public class User {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public List<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
+    }
+
+    public void addDevice(Device device) {
+        this.devices.add(device);
+    }
+
+    public List<String> getLanguagesPreferences() {
+        return languagesPreferences;
+    }
+
+    public void setLanguagesPreferences(List<String> languagesPreferences) {
+        this.languagesPreferences = languagesPreferences;
+    }
+
+    public void addLanguagePreference(String languagePreference) {
+        this.languagesPreferences.add(languagePreference);
+    }
+
+    public List<Playlist> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(List<Playlist> playlists) {
+        this.playlists = playlists;
+    }
+
+    public void addPlaylist(Playlist playlist) {
+        this.playlists.add(playlist);
     }
 
     public List<User> getFriends() {

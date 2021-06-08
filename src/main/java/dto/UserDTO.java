@@ -1,7 +1,6 @@
 package main.java.dto;
 
 import main.java.models.Device;
-import main.java.models.Language;
 import main.java.models.Playlist;
 import main.java.models.User;
 
@@ -17,7 +16,7 @@ public class UserDTO {
     private String country;
     private List<User> friends = new ArrayList<>();
     private List<Device> devices = new ArrayList<>();
-    private List<Language> languagesPreferences = new ArrayList<>();
+    private List<String> languagesPreferences = new ArrayList<>();
     private List<Playlist> playlists = new ArrayList<>();
 
     public String getName() {
@@ -92,15 +91,15 @@ public class UserDTO {
         this.devices.add(dev);
     }
 
-    public List<Language> getLanguagesPreferences() {
+    public List<String> getLanguagesPreferences() {
         return languagesPreferences;
     }
 
-    public void setLanguagesPreferences(List<Language> languagesPreferences) {
+    public void setLanguagesPreferences(List<String> languagesPreferences) {
         this.languagesPreferences = languagesPreferences;
     }
 
-    public void addLanguage(Language lan) {
+    public void addLanguage(String lan) {
         this.languagesPreferences.add(lan);
     }
 

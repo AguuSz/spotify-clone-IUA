@@ -49,7 +49,8 @@ public class ContentDAO {
     public List<Content> list() throws SQLException {
 
         String QUERY = "SELECT id_playlist, name, length, genre, language " +
-                "FROM content ";
+                "FROM content INNER JOIN genre ON content.id_genre = content.id_genre " +
+                "INNER JOIN language ON content.id_language = language.id_language;";
 
         List<Content> contentList = new ArrayList<>();
 
@@ -64,7 +65,7 @@ public class ContentDAO {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Content content = new Content();
-                content.setId(rs.getInt("id_playlist"));
+                content.setId(rs.getInt("id_content"));
                 content.setName(rs.getString("name"));
                 content.setLength(rs.getInt("length"));
                 content.setGenre(rs.getString("genre"));
@@ -80,9 +81,10 @@ public class ContentDAO {
     }
 
     public List<Content> find(String data) throws SQLException {
-        String QUERY = "SELECT id_playlist, name " +
-                "FROM playlist " +
-                "WHERE name LIKE '%?%'";
+        String QUERY = "SELECT id_content, name, length, genre, language " +
+                "FROM content INNER JOIN genre ON content.id_genre = content.id_genre " +
+                "INNER JOIN language ON content.id_language = language.id_language" +
+                "WHERE name LIKE '%?%';";
 
         List<Content> contentList = new ArrayList<>();
 
@@ -99,7 +101,7 @@ public class ContentDAO {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Content content = new Content();
-                content.setId(rs.getInt("id_playlist"));
+                content.setId(rs.getInt("id_content"));
                 content.setName(rs.getString("name"));
                 content.setLength(rs.getInt("length"));
                 content.setGenre(rs.getString("genre"));

@@ -1,34 +1,19 @@
-package main.java.models;
+package main.java.dto;
 
-import main.java.dto.DeviceDTO;
+public class DeviceDTO {
 
-import java.util.Objects;
-
-public class Device {
-    private int id;
     private String macAddress;
     private int idUser;
     private String name;
     private String model;
     private String pairingDate;
 
-    public Device() {
-    }
-
-    public Device(DeviceDTO dto) {
-        this.macAddress = dto.getMacAddress();
-        this.id = dto.getIdUser();
-        this.name = dto.getName();
-        this.model = dto.getModel();
-        this.pairingDate = dto.getPairingDate();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public DeviceDTO (String macAddress, int idUser, String name, String model, String pairingDate) {
+        this.macAddress = macAddress;
+        this.idUser = idUser;
+        this.name = name;
+        this.model = model;
+        this.pairingDate = pairingDate;
     }
 
     public String getMacAddress() {

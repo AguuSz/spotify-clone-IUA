@@ -1,5 +1,6 @@
 package main.java.interfaces;
 
+import main.java.dto.ContentDTO;
 import main.java.dto.PlaylistDTO;
 import main.java.exception.ValidationException;
 import main.java.models.Playlist;
@@ -17,6 +18,7 @@ public interface IPlaylistService {
 
     //  UPDATE
     public boolean update(int id, PlaylistDTO dto) throws SQLException;
+    public boolean insertContent(int id, ContentDTO dto);
 
     //  READ
     public Playlist getOne(int id);
