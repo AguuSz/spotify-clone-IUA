@@ -7,19 +7,22 @@ import main.java.models.Device;
 import java.sql.SQLException;
 import java.util.List;
 
+
 public interface IDeviceService {
 
     //  CREATE
-    public Device create(DeviceDTO dto) throws ValidationException, SQLException;
+    public Device createDevice(DeviceDTO device) throws ValidationException, SQLException;
 
     // DELETE
-    public boolean delete(int id) throws SQLException;
+    public Device deleteOne(int id) throws SQLException;
 
     //  UPDATE
-    public boolean update(int id, DeviceDTO dto) throws SQLException;
+    public Device updateOne(int id, DeviceDTO device) throws SQLException;
 
     //  READ
-    public Device getOne(int id);
-    public List<Device> list() throws SQLException;
-    public List<Device> find(String data) throws SQLException;
+    public List<Device> findByUserId(int id) throws SQLException;
+    public List<Device> findByModel(String model) throws SQLException;
+    public Device findByMacAddress(String macAddress) throws SQLException;
+    public List<Device> findByName(int id) throws SQLException;
+    public Device findOne(int id) throws SQLException;
 }

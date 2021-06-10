@@ -87,14 +87,14 @@ public class Content {
 
     @Override
     public String toString() {
-        return "Content{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", length=" + length +
-                ", genre='" + genre + '\'' +
-                ", language='" + language + '\'' +
-                ", artists=" + artists +
-                ", albums=" + albums +
-                '}';
+        return "Content:" +
+                "-id:" + id +
+                "-name:'" + name + '\'' +
+                "-length:" + length +
+                "-genre:" + genre + '\'' +
+                "-language:'" + language + '\'' +
+                "-artists:" + artists +
+                "-albums:" + albums +
+                '\'';
     }
 }
