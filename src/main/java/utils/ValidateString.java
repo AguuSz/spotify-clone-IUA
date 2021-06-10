@@ -7,16 +7,16 @@ public class ValidateString {
 
     ValidationException error;
 
-    public String validate(String string){
-
-        if(string == null){
-
-            System.out.println();
-
-        }else {
-
-            return string.trim();
-        }
-    }
+//    public String validate(String string){
+//
+//        if(string == null){
+//
+//            System.out.println();
+//
+//        }else {
+//
+//            return string.trim();
+//        }
+//    }
 
 }

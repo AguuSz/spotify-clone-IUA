@@ -16,7 +16,6 @@ public class Playlist {
 
     public Playlist(PlaylistDTO pll) {
         this.name = pll.getName();
-        this.contentList = pll.getContentList();
     }
 
     public int getId() {

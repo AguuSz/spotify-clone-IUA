@@ -19,6 +19,8 @@ public class User {
     private List<String> languagesPreferences;
     private List<Playlist> playlists;
 
+    public User() {}
+
     public User (UserDTO dto){
         this.name = dto.getName();
         this.lastName = dto.getLastName();

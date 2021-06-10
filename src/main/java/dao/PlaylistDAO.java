@@ -1,27 +1,30 @@
 package main.java.dao;
 
+import main.java.conf.DataSourceFactory;
 import main.java.conf.JDBCUtil;
 import main.java.dto.ContentDTO;
+import main.java.dto.PlaylistDTO;
 import main.java.models.Playlist;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistDAO {
 
+    DataSource dataSource = DataSourceFactory.getMySQLDataSource();
+
     //  CREATE
-    public Playlist create(Playlist playlist) throws SQLException {
-        String QUERY = "INSERT INTO Playlist (name) " +
-                "VALUES( ? );";
-        try (Connection connection = DriverManager.
-                getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
+    public Playlist create(PlaylistDTO playlistDTO) throws SQLException {
+        String QUERY = "INSERT INTO Playlist (name) " + "VALUES( ? );";
+        Connection connection = dataSource.getConnection();
 
-             PreparedStatement preparedStatement = connection.
-                     prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);) {
+        Playlist playlist = new Playlist(playlistDTO);
 
-
-            preparedStatement.setString(1, playlist.getName());
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, playlistDTO.getName());
 
             System.out.println(preparedStatement);
 
@@ -31,43 +34,30 @@ public class PlaylistDAO {
             while (rs.next()) {
                 playlist.setId(rs.getInt(1));
             }
-
-        } catch (SQLException e) {
-            throw e;
         }
         return playlist;
     }
 
     //  READ
     public Playlist getOne(int id) throws SQLException {
-
-        String QUERY = "SELECT id_playlist, name " +
-                "FROM playlist " +
-                "WHERE id_playlist = ?;";
-
+        String QUERY = "SELECT id_playlist, name " + "FROM playlist " + "WHERE id_playlist = ?;";
+        Connection connection = dataSource.getConnection();
         Playlist playlist = null;
 
-        try (Connection connection = DriverManager.
-                getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
-
-             PreparedStatement preparedStatement = connection.
-                     prepareStatement(QUERY)) {
-
-            preparedStatement.setString(1, String.valueOf(id));
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, id);
 
             System.out.println(preparedStatement);
 
             ResultSet rs = preparedStatement.executeQuery();
+
             while (rs.next()) {
                 playlist = new Playlist();
                 playlist.setId(rs.getInt("id_playlist"));
                 playlist.setName(rs.getString("name"));
             }
-
-        } catch (SQLException e) {
-            throw e;
         }
-
         return playlist;
     }
 
@@ -155,9 +145,12 @@ public class PlaylistDAO {
         }
         return true;
     }
-   // public boolean insertContent(int id, ContentDTO dto){
 
-    //} //TODO
+    // TODO: Rellenar contenido
+    public boolean insertContent(int id, ContentDTO dto) {
+        return true;
+    }
+
     // DELETE
     public boolean delete(int id) throws SQLException {
         String QUERY = "DELETE FROM Playlist" +

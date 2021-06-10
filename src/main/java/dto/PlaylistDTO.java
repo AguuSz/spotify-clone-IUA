@@ -1,22 +1,13 @@
 package main.java.dto;
 
-import main.java.models.Content;
-import main.java.models.Playlist;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class PlaylistDTO {
     private String name;
-    private List<Content> contentList = new ArrayList<>();
+    private String createdAt;
+    private int userId;
 
-    public PlaylistDTO (String name) {
+    public PlaylistDTO (String name, int userId) {
         this.name = name;
-    }
-
-    public PlaylistDTO (String name, List<Content> contentList) {
-        this.name = name;
-        this.contentList = contentList;
+        this.userId = userId;
     }
 
     public String getName() {
@@ -27,16 +18,19 @@ public class PlaylistDTO {
         this.name = name;
     }
 
-    public List<Content> getContentList() {
-        return contentList;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setContentList(List<Content> contentList) {
-        this.contentList = contentList;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public void addContent(Content content) {
-        this.contentList.add(content);
+    public int getUserId() {
+        return userId;
     }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }

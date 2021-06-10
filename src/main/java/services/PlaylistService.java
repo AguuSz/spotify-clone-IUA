@@ -6,20 +6,25 @@ import main.java.dto.PlaylistDTO;
 import main.java.exception.ValidationException;
 import main.java.interfaces.IPlaylistService;
 import main.java.models.Playlist;
+import main.java.utils.Formatter;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class PlaylistService implements IPlaylistService {
 
     private PlaylistDAO dao = new PlaylistDAO();
+
     @Override
     public Playlist create(PlaylistDTO dto) throws ValidationException, SQLException {
         if(dto.getName().isBlank())
             throw new ValidationException("The name can not be empty");
 
-        Playlist playlist = new Playlist(dto);
-        return dao.create(playlist);
+        dto.setCreatedAt(Formatter.formatDate(new Date()));
+
+        return dao.create(dto);
     }
 
     @Override
