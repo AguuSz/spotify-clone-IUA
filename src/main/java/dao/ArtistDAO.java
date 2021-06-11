@@ -1,6 +1,5 @@
 package main.java.dao;
 
-import main.java.conf.JDBCUtil;
 import main.java.models.Artist;
 
 import java.sql.*;

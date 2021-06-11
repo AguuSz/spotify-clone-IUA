@@ -1,23 +1,21 @@
 package main.java.dto;
 
-import main.java.models.Device;
-import main.java.models.Playlist;
-import main.java.models.User;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class UserDTO {
+    private int id;
     private String name;
     private String lastName;
     private String email;
     private String birthdate;
     private String password;
     private String country;
-    private List<User> friends = new ArrayList<>();
-    private List<Device> devices = new ArrayList<>();
-    private List<String> languagesPreferences = new ArrayList<>();
-    private List<Playlist> playlists = new ArrayList<>();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -65,54 +63,6 @@ public class UserDTO {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public List<User> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(List<User> friends) {
-        this.friends = friends;
-    }
-
-    public void addFriend(User friend) {
-        this.friends.add(friend);
-    }
-
-    public List<Device> getDevices() {
-        return devices;
-    }
-
-    public void setDevices(List<Device> devices) {
-        this.devices = devices;
-    }
-
-    public void addDevice(Device dev) {
-        this.devices.add(dev);
-    }
-
-    public List<String> getLanguagesPreferences() {
-        return languagesPreferences;
-    }
-
-    public void setLanguagesPreferences(List<String> languagesPreferences) {
-        this.languagesPreferences = languagesPreferences;
-    }
-
-    public void addLanguage(String lan) {
-        this.languagesPreferences.add(lan);
-    }
-
-    public List<Playlist> getPlayLists() {
-        return playlists;
-    }
-
-    public void setPlayLists(List<Playlist> playlists) {
-        this.playlists = playlists;
-    }
-
-    public void addPlayList(Playlist pll) {
-        this.playlists.add(pll);
     }
 
 }

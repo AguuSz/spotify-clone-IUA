@@ -33,9 +33,8 @@ public class PlaylistService implements IPlaylistService {
     }
 
     @Override
-    public boolean update(int id, PlaylistDTO dto) throws SQLException {
-        Playlist pll = new Playlist(dto);
-        return dao.update(id, pll);
+    public Playlist update(PlaylistDTO dto) throws SQLException {
+        return dao.update(dto);
     }
 
     @Override
@@ -54,7 +53,7 @@ public class PlaylistService implements IPlaylistService {
     }
 
     @Override
-    public List<Playlist> find(String data) throws SQLException {
-        return dao.find(data);
+    public List<Playlist> findByName(String name) throws SQLException {
+        return dao.findByName(name);
     }
 }

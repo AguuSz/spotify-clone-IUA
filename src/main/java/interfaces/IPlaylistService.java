@@ -17,12 +17,12 @@ public interface IPlaylistService {
     public boolean delete(int id) throws SQLException;
 
     //  UPDATE
-    public boolean update(int id, PlaylistDTO dto) throws SQLException;
+    public Playlist update(PlaylistDTO dto) throws SQLException;
     public boolean insertContent(int id, ContentDTO dto);
 
     //  READ
     public Playlist getOne(int id);
     public List<Playlist> list() throws SQLException;
-    public List<Playlist> find(String data) throws SQLException;
+    public List<Playlist> findByName(String name) throws SQLException;
 
 }
