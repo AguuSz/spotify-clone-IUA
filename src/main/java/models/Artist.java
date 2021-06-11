@@ -40,6 +40,11 @@ public class Artist {
     }
 
     @Override
+    public String toString() {
+        return "Artist{" + "Id= " + id + ", Name= '" + name + '\'' + ", Country='" + country + '\'' + '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(name, country);
     }

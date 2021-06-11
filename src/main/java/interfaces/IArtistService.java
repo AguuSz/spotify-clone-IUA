@@ -11,4 +11,5 @@ public interface IArtistService {
     public List<Artist> findByName(String name) throws SQLException;
     public List<Artist> findByCountry(String country) throws SQLException;
 
+
 }

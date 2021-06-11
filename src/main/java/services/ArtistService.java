@@ -47,4 +47,5 @@ public class ArtistService implements IArtistService {
 
         return dao.findByCountry(country);
     }
+
 }

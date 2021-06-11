@@ -40,7 +40,7 @@ public class ArtistDAO {
     }
 
     public List<Artist> findByName(String name) throws SQLException {
-        String QUERY = "SELECT id_artist, stage_name, country FROM artist INNER JOIN country ON artist.idcountry = country.idcountry WHERE name LIKE ?;";
+        String QUERY = "SELECT id_artist, stage_name, id_country FROM artist INNER JOIN country ON artist.idcountry = country.idcountry WHERE name LIKE ?;";
         Connection connection = dataSource.getConnection();
         List<Artist> artistList = new ArrayList<>();
 
@@ -68,7 +68,7 @@ public class ArtistDAO {
     }
 
     public List<Artist> findByCountry(String country) throws SQLException {
-        String QUERY = "SELECT id_artist, stage_name, country FROM artist INNER JOIN country ON artist.idcountry = country.idcountry WHERE country LIKE ?;";
+        String QUERY = "SELECT * FROM artist INNER JOIN country ON artist.id_country = country.id_country WHERE country.name LIKE ?;";
         Connection connection = dataSource.getConnection();
         List<Artist> artistList = new ArrayList<>();
 
@@ -84,7 +84,7 @@ public class ArtistDAO {
                 Artist artist = new Artist();
                 artist.setId(rs.getInt("id_artist"));
                 artist.setName(rs.getString("stage_name"));
-                artist.setCountry(rs.getString("country"));
+                artist.setCountry(rs.getString("country.name"));
                 artistList.add(artist);
             }
 
