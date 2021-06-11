@@ -1,23 +1,25 @@
 package main.java.dao;
 
-import main.java.conf.JDBCUtil;
+import main.java.conf.DataSourceFactory;
 import main.java.models.Device;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DeviceDAO {
+
+    DataSource dataSource = DataSourceFactory.getMySQLDataSource();
+
     //  CREATE
     public Device create(Device device) throws SQLException {
         String QUERY = "INSERT INTO Device (mac_address, id_user, name, model, pairing_date) " +
                 "VALUES( ?, ?, ?, ?, ? );";
-        try (Connection connection = DriverManager.
-                getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
+        Connection connection = dataSource.getConnection();
 
-             PreparedStatement preparedStatement = connection.
-                     prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);) {
-
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, device.getMacAddress());
             preparedStatement.setInt(2, device.getIdUser());
@@ -34,9 +36,8 @@ public class DeviceDAO {
                 device.setId(rs.getInt(1));
             }
 
-        } catch (SQLException e) {
-            throw e;
         }
+
         return device;
     }
 
@@ -46,15 +47,11 @@ public class DeviceDAO {
         String QUERY = "SELECT id_device, mac_address, id_user, name, model, pairing_date " +
                 "FROM device " +
                 "WHERE id_device = ?;";
-
+        Connection connection = dataSource.getConnection();
         Device device = null;
 
-        try (Connection connection = DriverManager.
-                getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
-
-             PreparedStatement preparedStatement = connection.
-                     prepareStatement(QUERY)) {
-
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
             preparedStatement.setString(1, String.valueOf(id));
 
             System.out.println(preparedStatement);
@@ -70,8 +67,6 @@ public class DeviceDAO {
                 device.setPairingDate(rs.getString("pairing_date"));
             }
 
-        } catch (SQLException e) {
-            throw e;
         }
 
         return device;
@@ -81,14 +76,11 @@ public class DeviceDAO {
 
         String QUERY = "SELECT id_device, mac_addres, name, model, pairing_date " +
                 "FROM device;";
-
+        Connection connection = dataSource.getConnection();
         List<Device> deviceList= new ArrayList<>();
 
-        try (Connection connection = DriverManager.
-                getConnection(JDBCUtil.getURL(), JDBCUtil.getUser(), JDBCUtil.getPassword());
-
-             PreparedStatement preparedStatement = connection.
-                     prepareStatement(QUERY);) {
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
 
             System.out.println(preparedStatement);
 
@@ -104,8 +96,6 @@ public class DeviceDAO {
                 deviceList.add(device);
             }
 
-        } catch (SQLException e) {
-            throw e;
         }
 
         return deviceList;

@@ -1,22 +1,36 @@
 package main.java;
 
-import main.java.dao.AuthDAO;
+import main.java.dto.UserDTO;
 import main.java.exception.NotFoundException;
 import main.java.models.User;
+import main.java.services.AuthService;
+import main.java.utils.Formatter;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
-        AuthDAO authDAO = new AuthDAO();
+        AuthService authService = new AuthService();
 
+        // Registrando un usuario
+        /*
         try {
-            User user = authDAO.login("agus.sepu2000@hotmail.com", "testtest");
-            if (user == null) throw new NotFoundException("Error 404. Usuario no encontrado.");
-        } catch (SQLException sqlException) {
-            System.out.println(sqlException.getMessage());
-        } catch (NotFoundException notFoundException) {
-            System.out.println(notFoundException.getMessage());
+            UserDTO userDTO = new UserDTO("El charky", "Camargo", "elcharky@gmail.com", Formatter.formatDate(new Date()), "passwordop", "1");
+            User user = authService.register(userDTO);
+            System.out.println(user);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+         */
+
+        // Loggeando al usuario
+        try {
+            User user2 = authService.login("elcharky@gmail.com", "passwordop");
+            System.out.println(user2);
+        } catch (SQLException e) {
+            System.out.println(e);
         }
 
     }

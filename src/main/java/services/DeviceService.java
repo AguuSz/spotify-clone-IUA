@@ -25,7 +25,7 @@ public class DeviceService implements IDeviceService {
     }
 
     @Override
-    public List<Device> findByUserId(int id) throws SQLException {
+    public List<Device> findByUserId(int userId) throws SQLException {
         return null;
     }
 
@@ -40,7 +40,7 @@ public class DeviceService implements IDeviceService {
     }
 
     @Override
-    public List<Device> findByName(int id) throws SQLException {
+    public List<Device> findByName(String name) throws SQLException {
         return null;
     }
 

@@ -17,12 +17,12 @@ public class ContentService implements IContentService {
     }
 
     @Override
-    public List<Content> list() throws SQLException {
-        return dao.list();
+    public List<Content> findByName(String name) throws SQLException {
+        return dao.findByName(name);
     }
 
     @Override
-    public List<Content> find(String data) throws SQLException {
-        return dao.find(data);
+    public List<Content> getAll() throws SQLException {
+        return dao.getAll();
     }
 }

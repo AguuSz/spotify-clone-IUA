@@ -1,6 +1,7 @@
 package main.java.dto;
 
 public class PlaylistDTO {
+    private int id;
     private String name;
     private String createdAt;
     private int userId;
@@ -8,6 +9,14 @@ public class PlaylistDTO {
     public PlaylistDTO (String name, int userId) {
         this.name = name;
         this.userId = userId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
