@@ -5,18 +5,16 @@ import main.java.exception.ValidationException;
 public class ValidateString {
 
 
-    ValidationException error;
+    public static String validate(String string) throws ValidationException {
 
-//    public String validate(String string){
-//
-//        if(string == null){
-//
-//            System.out.println();
-//
-//        }else {
-//
-//            return string.trim();
-//        }
-//    }
+        if(string == null || string.isBlank()){
+
+            throw new ValidationException("The string is null");
+
+        }else{
+            return string.trim();
+        }
+
+    }
 
 }

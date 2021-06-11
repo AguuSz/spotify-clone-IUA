@@ -40,7 +40,7 @@
 
 - findOne(int id)                                               : Artist
 - findByName(String name)                                       : List<Artist>
-- findByCountry(String country)                                 : Artist
+- findByCountry(String country)                                 : List<Artist>
 
 # Genre
 

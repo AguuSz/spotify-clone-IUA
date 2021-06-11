@@ -14,7 +14,6 @@ public class Main {
         AuthService authService = new AuthService();
 
         // Registrando un usuario
-        /*
         try {
             UserDTO userDTO = new UserDTO("El charky", "Camargo", "elcharky@gmail.com", Formatter.formatDate(new Date()), "passwordop", "1");
             User user = authService.register(userDTO);
@@ -23,15 +22,14 @@ public class Main {
             System.out.println(e);
         }
 
-         */
 
         // Loggeando al usuario
-        try {
+        /*try {
             User user2 = authService.login("elcharky@gmail.com", "passwordop");
             System.out.println(user2);
         } catch (SQLException e) {
             System.out.println(e);
-        }
+        }*/
 
     }
 
