@@ -22,7 +22,7 @@ public interface IPlaylistService {
 
     //  READ
     public Playlist getOne(int id);
-    public List<Playlist> list() throws SQLException;
+    public List<Playlist> getAll() throws SQLException;
     public List<Playlist> findByName(String name) throws SQLException;
 
 }

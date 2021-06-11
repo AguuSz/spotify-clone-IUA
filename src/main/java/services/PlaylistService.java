@@ -48,8 +48,8 @@ public class PlaylistService implements IPlaylistService {
     }
 
     @Override
-    public List<Playlist> list() throws SQLException {
-        return dao.list();
+    public List<Playlist> getAll() throws SQLException {
+        return dao.getAll();
     }
 
     @Override

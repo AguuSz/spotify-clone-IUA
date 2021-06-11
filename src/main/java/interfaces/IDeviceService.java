@@ -20,9 +20,9 @@ public interface IDeviceService {
     public Device updateOne(int id, DeviceDTO device) throws SQLException;
 
     //  READ
-    public List<Device> findByUserId(int id) throws SQLException;
+    public List<Device> findByUserId(int userId) throws SQLException;
     public List<Device> findByModel(String model) throws SQLException;
     public Device findByMacAddress(String macAddress) throws SQLException;
-    public List<Device> findByName(int id) throws SQLException;
+    public List<Device> findByName(String name) throws SQLException;
     public Device findOne(int id) throws SQLException;
 }

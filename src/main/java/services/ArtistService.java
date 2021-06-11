@@ -17,12 +17,12 @@ public class ArtistService implements IArtistService {
     }
 
     @Override
-    public List<Artist> list() throws SQLException {
-        return dao.list();
+    public List<Artist> findByName(String name) throws SQLException {
+        return dao.findByName(name);
     }
 
     @Override
-    public List<Artist> find(String data) throws SQLException {
-        return dao.find(data);
+    public List<Artist> getAll() throws SQLException {
+        return dao.getAll();
     }
 }

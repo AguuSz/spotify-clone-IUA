@@ -28,7 +28,6 @@ public class User {
         this.birthdate = dto.getBirthdate();
         this.password = dto.getPassword();
         this.country = dto.getCountry();
-        this.friends = dto.getFriends();
     }
     public int getId() {
         return id;

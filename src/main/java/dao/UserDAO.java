@@ -33,6 +33,7 @@ public class UserDAO {
                 user.setEmail(rs.getString("email"));
                 user.setBirthdate(rs.getString("birthdate"));
                 user.setCountry(rs.getString("country.name"));
+                user.setPassword(rs.getString("password"));
             }
         }
         return user;
@@ -59,6 +60,7 @@ public class UserDAO {
                 user.setEmail(rs.getString("email"));
                 user.setBirthdate(rs.getString("birthdate"));
                 user.setCountry(rs.getString("country.name"));
+                user.setPassword(rs.getString("password"));
             }
         }
         return user;

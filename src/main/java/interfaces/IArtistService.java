@@ -8,6 +8,7 @@ import java.util.List;
 public interface IArtistService {
     //  READ
     public Artist getOne(int id) throws SQLException;
-    public List<Artist> list() throws SQLException;
-    public List<Artist> find(String data) throws SQLException;
+    public List<Artist> findByName(String name) throws SQLException;
+    public List<Artist> getAll() throws SQLException;
+
 }

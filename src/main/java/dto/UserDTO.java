@@ -9,6 +9,15 @@ public class UserDTO {
     private String password;
     private String country;
 
+    public UserDTO(String name, String lastName, String email, String birthdate, String password, String country) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.birthdate = birthdate;
+        this.password = password;
+        this.country = country;
+    }
+
     public int getId() {
         return id;
     }
