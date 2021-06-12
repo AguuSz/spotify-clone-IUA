@@ -8,7 +8,7 @@
 - addFriend(int userId, int friendId)                           : User (friend)
 - getFriendsList(int id)                                        : List<User>
 - deleteFriend(int userId, int friendId)                        : User (friend)
-- getFriendActivity(int friendId)                               : Activity
+- getActivity(int id)                                           : List<Activity>
 
 # Playlist
 

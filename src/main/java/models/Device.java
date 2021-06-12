@@ -2,22 +2,23 @@ package main.java.models;
 
 import main.java.dto.DeviceDTO;
 
+import java.sql.Date;
 import java.util.Objects;
 
 public class Device {
     private int id;
     private String macAddress;
-    private int idUser;
+    private int userId;
     private String name;
     private String model;
-    private String pairingDate;
+    private Date pairingDate;
 
     public Device() {
     }
 
     public Device(DeviceDTO dto) {
         this.macAddress = dto.getMacAddress();
-        this.id = dto.getIdUser();
+        this.id = dto.getUserId();
         this.name = dto.getName();
         this.model = dto.getModel();
         this.pairingDate = dto.getPairingDate();
@@ -39,12 +40,12 @@ public class Device {
         this.macAddress = macAddress;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -63,11 +64,11 @@ public class Device {
         this.model = model;
     }
 
-    public String getPairingDate() {
+    public Date getPairingDate() {
         return pairingDate;
     }
 
-    public void setPairingDate(String paringDate) {
+    public void setPairingDate(Date paringDate) {
         this.pairingDate = paringDate;
     }
 }

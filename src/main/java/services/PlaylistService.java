@@ -7,6 +7,7 @@ import main.java.exception.ValidationException;
 import main.java.interfaces.IPlaylistService;
 import main.java.models.Playlist;
 import main.java.utils.Formatter;
+import main.java.utils.Validate;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -19,11 +20,8 @@ public class PlaylistService implements IPlaylistService {
 
     @Override
     public Playlist create(PlaylistDTO dto) throws ValidationException, SQLException {
-        if(dto.getName().isBlank())
-            throw new ValidationException("The name can not be empty");
 
         dto.setCreatedAt(Formatter.formatDate(new Date()));
-
         return dao.create(dto);
     }
 

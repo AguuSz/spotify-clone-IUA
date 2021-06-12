@@ -2,6 +2,7 @@ package main.java.services;
 
 import main.java.dao.UserDAO;
 import main.java.dto.UserDTO;
+import main.java.exception.ValidationException;
 import main.java.models.User;
 
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class AuthService {
         }
     }
 
-    public User register(UserDTO userDTO) throws SQLException {
+    public User register(UserDTO userDTO) throws SQLException, ValidationException {
         // Checkeamos si el email ya existe en la db
         if (userExists(userDTO.getEmail())) {} // TODO: Agregar excepcion EmailAlreadyUsed
 

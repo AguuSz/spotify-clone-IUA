@@ -2,6 +2,7 @@ package main.java.models;
 
 import main.java.dto.UserDTO;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,7 +12,7 @@ public class User {
     private String name;
     private String lastName;
     private String email;
-    private String birthdate;
+    private Date birthdate;
     private String password;
     private String country;
     private List<User> friends;
@@ -61,11 +62,11 @@ public class User {
         this.email = email;
     }
 
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 

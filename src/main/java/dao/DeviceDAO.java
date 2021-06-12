@@ -1,7 +1,10 @@
 package main.java.dao;
 
 import main.java.conf.DataSourceFactory;
+import main.java.dto.DeviceDTO;
+import main.java.dto.UserDTO;
 import main.java.models.Device;
+import main.java.models.User;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -13,19 +16,21 @@ public class DeviceDAO {
     DataSource dataSource = DataSourceFactory.getMySQLDataSource();
 
     //  CREATE
-    public Device create(Device device) throws SQLException {
+    public Device create(DeviceDTO deviceDTO) throws SQLException {
         String QUERY = "INSERT INTO Device (mac_address, id_user, name, model, pairing_date) " +
                 "VALUES( ?, ?, ?, ?, ? );";
         Connection connection = dataSource.getConnection();
 
+        Device device = null;
+
         try (connection) {
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setString(1, device.getMacAddress());
-            preparedStatement.setInt(2, device.getIdUser());
-            preparedStatement.setString(3, device.getName());
-            preparedStatement.setString(4, device.getModel());
-            preparedStatement.setString(5, device.getPairingDate());
+            preparedStatement.setString(1, deviceDTO.getMacAddress());
+            preparedStatement.setInt(2, deviceDTO.getUserId());
+            preparedStatement.setString(3, deviceDTO.getName());
+            preparedStatement.setString(4, deviceDTO.getModel());
+            preparedStatement.setDate(5, deviceDTO.getPairingDate());
 
             System.out.println(preparedStatement);
 
@@ -33,26 +38,23 @@ public class DeviceDAO {
 
             ResultSet rs = preparedStatement.getGeneratedKeys();
             while (rs.next()) {
+                device = new Device(deviceDTO);
                 device.setId(rs.getInt(1));
             }
-
         }
-
         return device;
     }
 
     //  READ
-    public Device getOne(int id) throws SQLException {
+    public Device findOne(int id) throws SQLException {
 
-        String QUERY = "SELECT id_device, mac_address, id_user, name, model, pairing_date " +
-                "FROM device " +
-                "WHERE id_device = ?;";
+        String QUERY = "SELECT * FROM device WHERE id_device = ?;";
         Connection connection = dataSource.getConnection();
         Device device = null;
 
         try (connection) {
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
-            preparedStatement.setString(1, String.valueOf(id));
+            preparedStatement.setInt(1, id);
 
             System.out.println(preparedStatement);
 
@@ -61,26 +63,24 @@ public class DeviceDAO {
                 device = new Device();
                 device.setId(rs.getInt("id_device"));
                 device.setMacAddress(rs.getString("mac_address"));
-                device.setIdUser(rs.getInt("id_user"));
+                device.setUserId(rs.getInt("id_user"));
                 device.setName(rs.getString("name"));
                 device.setModel(rs.getString("model"));
-                device.setPairingDate(rs.getString("pairing_date"));
+                device.setPairingDate(rs.getDate("pairing_date"));
             }
-
         }
-
         return device;
     }
 
-    public List<Device> list() throws SQLException {
+    public List<Device> findByName(String name) throws SQLException {
 
-        String QUERY = "SELECT id_device, mac_addres, name, model, pairing_date " +
-                "FROM device;";
+        String QUERY = "SELECT * FROM device WHERE name LIKE ?;";
         Connection connection = dataSource.getConnection();
-        List<Device> deviceList= new ArrayList<>();
+        List<Device> deviceList = new ArrayList<>();
 
         try (connection) {
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setString(1, "%" + name + "%");
 
             System.out.println(preparedStatement);
 
@@ -89,17 +89,136 @@ public class DeviceDAO {
                 Device device = new Device();
                 device.setId(rs.getInt("id_device"));
                 device.setMacAddress(rs.getString("mac_address"));
-                device.setIdUser(rs.getInt("id_user"));
+                device.setUserId(rs.getInt("id_user"));
                 device.setName(rs.getString("name"));
                 device.setModel(rs.getString("model"));
-                device.setPairingDate(rs.getString("pairing_date"));
+                device.setPairingDate(rs.getDate("pairing_date"));
                 deviceList.add(device);
             }
-
         }
-
         return deviceList;
     }
 
-    //TODO
+    public Device findByMacAddress(String macAddress) throws SQLException {
+
+        String QUERY = "SELECT * FROM device WHERE mac_address = ?;";
+        Connection connection = dataSource.getConnection();
+        Device device = null;
+
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setString(1, macAddress);
+
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                device = new Device();
+                device.setId(rs.getInt("id_device"));
+                device.setMacAddress(rs.getString("mac_address"));
+                device.setUserId(rs.getInt("id_user"));
+                device.setName(rs.getString("name"));
+                device.setModel(rs.getString("model"));
+                device.setPairingDate(rs.getDate("pairing_date"));
+            }
+        }
+        return device;
+    }
+
+    public List<Device> findByModel(String model) throws SQLException {
+
+        String QUERY = "SELECT * FROM device WHERE model LIKE ?;";
+        Connection connection = dataSource.getConnection();
+        List<Device> deviceList = new ArrayList<>();
+
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setString(1, "%" + model + "%");
+
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Device device = new Device();
+                device.setId(rs.getInt("id_device"));
+                device.setMacAddress(rs.getString("mac_address"));
+                device.setUserId(rs.getInt("id_user"));
+                device.setName(rs.getString("name"));
+                device.setModel(rs.getString("model"));
+                device.setPairingDate(rs.getDate("pairing_date"));
+                deviceList.add(device);
+            }
+        }
+        return deviceList;
+    }
+
+    public List<Device> getByUserId(int id) throws SQLException {
+
+        String QUERY = "SELECT * FROM device WHERE id_user = ?;";
+        Connection connection = dataSource.getConnection();
+
+        List<Device> deviceList = new ArrayList<>();
+
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setInt(1, id);
+
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Device device = new Device();
+                device.setId(rs.getInt("id_device"));
+                device.setMacAddress(rs.getString("mac_address"));
+                device.setUserId(rs.getInt("id_user"));
+                device.setName(rs.getString("name"));
+                device.setModel(rs.getString("model"));
+                device.setPairingDate(rs.getDate("pairing_date"));
+                deviceList.add(device);
+            }
+        }
+        return deviceList;
+    }
+
+    //  UPDATE
+    public Device update(DeviceDTO deviceDTO) throws SQLException {
+        String QUERY = "UPDATE `device` SET mac_address = ?, SET id_user = ?, SET name = ?, SET model = ?, SET pairing_date = ? WHERE id_device = ?;";
+        Connection connection = dataSource.getConnection();
+        Device device = null;
+
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, deviceDTO.getMacAddress());
+            preparedStatement.setInt(2, deviceDTO.getUserId());
+            preparedStatement.setString(3, deviceDTO.getName());
+            preparedStatement.setString(4, deviceDTO.getModel());
+            preparedStatement.setDate(5, deviceDTO.getPairingDate());
+            preparedStatement.setInt(6, deviceDTO.getId());
+
+            System.out.println(preparedStatement);
+
+            preparedStatement.executeUpdate();
+
+            device = new Device(deviceDTO);
+            device.setId(deviceDTO.getId());
+        }
+        return device;
+    }
+
+    //  DELETE
+    public Device delete(int id) throws SQLException {
+        String QUERY = "DELETE FROM `device` WHERE (`id_device` = ?);";
+        Connection connection = dataSource.getConnection();
+        Device device = null;
+
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, id);
+
+            System.out.println(preparedStatement);
+            device = findOne(id);
+            preparedStatement.executeUpdate();
+        }
+        return device;
+    }
 }

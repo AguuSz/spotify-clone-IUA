@@ -16,7 +16,7 @@ public class PlaylistDAO {
 
     //  READ
     public Playlist findOne(int id) throws SQLException {
-        String QUERY = "SELECT id_playlist, name " + "FROM playlist " + "WHERE id_playlist = ?;";
+        String QUERY = "SELECT id_playlist, name FROM playlist WHERE id_playlist = ?;";
         Connection connection = dataSource.getConnection();
         Playlist playlist = null;
 
