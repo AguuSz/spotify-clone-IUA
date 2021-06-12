@@ -11,6 +11,6 @@ public interface IArtistService {
     public Artist findOne(int id) throws SQLException, ValidationException;
     public List<Artist> findByName(String name) throws SQLException, ValidationException;
     public List<Artist> findByCountry(String country) throws SQLException, ValidationException;
-
+    public List<Artist> getAll() throws SQLException;
 
 }

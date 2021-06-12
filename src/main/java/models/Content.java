@@ -1,5 +1,9 @@
 package main.java.models;
 
+import main.java.exception.ValidationException;
+import main.java.utils.Validate;
+
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +13,7 @@ public class Content {
     private int length;
     private String genre;
     private String language;
+    private Date date;
     private List<Artist> artists;
     private List<String> albums;
 
@@ -50,6 +55,14 @@ public class Content {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public Date getDate(){
+        return date;
+    }
+
+    public void setDate(Date date) throws ValidationException {
+        this.date = Validate.validateDate(date);
     }
 
     public List<Artist> getArtists() {

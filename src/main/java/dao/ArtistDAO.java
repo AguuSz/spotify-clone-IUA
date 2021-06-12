@@ -59,11 +59,7 @@ public class ArtistDAO {
                 artist.setCountry(rs.getString("country"));
                 artistList.add(artist);
             }
-
-        } catch (SQLException e) {
-            throw e;
         }
-
         return artistList;
     }
 
@@ -87,11 +83,7 @@ public class ArtistDAO {
                 artist.setCountry(rs.getString("country.name"));
                 artistList.add(artist);
             }
-
-        } catch (SQLException e) {
-            throw e;
         }
-
         return artistList;
     }
 
@@ -114,9 +106,7 @@ public class ArtistDAO {
                 artist.setCountry(rs.getString("country"));
                 artistList.add(artist);
             }
-
         }
-
         return artistList;
     }
 }

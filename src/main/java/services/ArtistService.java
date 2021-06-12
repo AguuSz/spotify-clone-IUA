@@ -15,20 +15,22 @@ public class ArtistService implements IArtistService {
 
     @Override
     public Artist findOne(int id) throws SQLException, ValidationException {
-        Validate.validateId(id);
-        return dao.findOne(id);
+        return dao.findOne(Validate.validateId(id));
     }
 
     @Override
     public List<Artist> findByName(String name) throws SQLException, ValidationException {
-        name = Validate.validateString(name);
-        return dao.findByName(name);
+        return dao.findByName(Validate.validateString(name));
     }
 
     @Override
     public List<Artist> findByCountry(String country) throws ValidationException, SQLException {
-        country = Validate.validateString(country);
-        return dao.findByCountry(country);
+        return dao.findByCountry(Validate.validateString(country));
+    }
+
+    @Override
+    public List<Artist> getAll() throws SQLException{
+        return dao.getAll();
     }
 
 }
