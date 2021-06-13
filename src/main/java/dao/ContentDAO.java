@@ -74,7 +74,6 @@ public class ContentDAO {
         return contentList;
     }
 
-
     public List<Content> findByGenre(String genre) throws SQLException {
         String QUERY = "SELECT content.id_content, content.name, length, genre, language, date, stage_name AS artist, album.name AS album_name " +
                 "FROM content INNER JOIN genre ON content.id_genre = genre.id_genre " +
@@ -113,7 +112,6 @@ public class ContentDAO {
         return contentList;
     }
 
-
     public List<Content> findByArtist(String artist) throws SQLException {
         String QUERY = "SELECT * FROM content " +
                 "INNER JOIN uploads ON content.id_content = uploads.id_content " +
@@ -143,7 +141,6 @@ public class ContentDAO {
             }
 
         }
-
         return contentList;
     }
 

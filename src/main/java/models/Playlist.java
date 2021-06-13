@@ -2,6 +2,7 @@ package main.java.models;
 
 import main.java.dto.PlaylistDTO;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,6 +10,7 @@ import java.util.Objects;
 public class Playlist {
     private int id;
     private String name;
+    private Date createdAt;
     private List<Content> contentList = new ArrayList<>();
 
     public Playlist() {

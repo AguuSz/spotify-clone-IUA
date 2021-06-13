@@ -201,6 +201,6 @@ hs_err_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,java,eclipse
 src/main/java/conf/db.properties
-.idea
 spotify-clone.iml
 spotify-clone-IUA.iml
+.idea/
