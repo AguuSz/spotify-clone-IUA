@@ -2,7 +2,7 @@ package main.java.services;
 
 import main.java.dao.UserDAO;
 import main.java.dto.UserDTO;
-import main.java.exception.ValidationException;
+import main.java.exception.*;
 import main.java.models.User;
 
 import java.sql.SQLException;
@@ -10,8 +10,8 @@ import java.sql.SQLException;
 public class AuthService {
     UserDAO userDAO = new UserDAO();
 
-    public User login(String email, String password) throws SQLException {
-        if (!userExists(email)) {} // TODO: Agregar excepcion EmailNotRegistered
+    public User login(String email, String password) throws SQLException, EmailNotRegisteredException {
+        if (!userExists(email)) throw new EmailNotRegisteredException("El usuario no existe. Intente registrarse primero.");
         User user = this.userDAO.findByEmail(email);
 
         if (PasswordService.checkPassword(password, user.getPassword())) {
@@ -23,9 +23,9 @@ public class AuthService {
         }
     }
 
-    public User register(UserDTO userDTO) throws SQLException, ValidationException {
+    public User register(UserDTO userDTO) throws SQLException, EmailAlreadyUsedException, InvalidEmailException, InvalidPasswordException {
         // Checkeamos si el email ya existe en la db
-        if (userExists(userDTO.getEmail())) {} // TODO: Agregar excepcion EmailAlreadyUsed
+        if (userExists(userDTO.getEmail())) throw new EmailAlreadyUsedException("El correo ya se ha registrado anteriormente. Intente con otro.");
 
         if (didFieldsPassValidation(userDTO.getEmail(), userDTO.getPassword())) {
             userDTO.setPassword(PasswordService.hashPassword(userDTO.getPassword()));
@@ -40,7 +40,7 @@ public class AuthService {
         return (user == null);
     }
 
-    private boolean didFieldsPassValidation(String email, String password) {
+    private boolean didFieldsPassValidation(String email, String password) throws InvalidEmailException, InvalidPasswordException {
         /*
         Condiciones para la password:
             - Minimo 6 caracteres
@@ -48,10 +48,10 @@ public class AuthService {
             - Minimo 1 digito
          */
 
-        if (password.length() < 6) {} // TODO: Agregar excepcion PasswordTooShort
-        if (!password.matches("^(?=.*[0-9])(?=.*[a-z])$")) {} // TODO: Agregar excepcion InvalidPassword
+        if (password.length() < 6) throw new InvalidPasswordException("La password debe tener mas de 6 caracteres.");
+        if (!password.matches("^(?=.*[0-9])(?=.*[a-z])$")) throw new InvalidPasswordException("La password debe tener minimo 1 digito, y 1 letra minuscula por lo menos.");
 
-        if (!email.matches("^[\\\\w!#$%&’*+/=?`{|}~^-]+(?:\\\\.[\\\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\\\.)+[a-zA-Z]{2,6}$")) {} // TODO: Agregar excepcion InvalidEmail
+        if (!email.matches("^[\\\\w!#$%&’*+/=?`{|}~^-]+(?:\\\\.[\\\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\\\.)+[a-zA-Z]{2,6}$")) throw new InvalidEmailException("Ingrese un correo valido.");
 
         return true;
     }
