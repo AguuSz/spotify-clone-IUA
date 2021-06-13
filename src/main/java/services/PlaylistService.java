@@ -54,4 +54,8 @@ public class PlaylistService implements IPlaylistService {
     public List<Playlist> findByName(String name) throws SQLException {
         return dao.findByName(name);
     }
+
+    public Playlist getMostListenedGenrePlaylist(int userId) throws SQLException {
+        return dao.getMostListenedGenrePlaylistByUserId(userId);
+    }
 }

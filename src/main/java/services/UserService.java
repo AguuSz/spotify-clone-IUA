@@ -63,7 +63,7 @@ public class UserService implements IUserService {
     @Override
     public User deleteFriend(int userId, int friendId) throws ValidationException, SQLException {
         if(Validate.validateId(userId) == Validate.validateId(friendId))
-            throw new ValidationException("Id's must be different");
+            throw new ValidationException("IDs must be different");
         return dao.deleteFriend(userId, friendId);
     }
 

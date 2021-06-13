@@ -88,6 +88,41 @@ public class PlaylistDAO {
         return playlists;
     }
 
+    public Playlist getMostListenedGenrePlaylistByUserId(int userId) throws SQLException {
+        String QUERY = "SELECT id_content, name, length, genre, language FROM content " +
+                "INNER JOIN genre ON content.id_genre = genre.id_genre\n" +
+                "INNER JOIN language ON content.id_language = language.id_language WHERE content.id_genre = (SELECT g.id_genre FROM `spotify-clone`.listen l " +
+                "INNER JOIN content c ON l.id_content = c.id_content " +
+                "INNER JOIN genre g ON c.id_genre = g.id_genre " +
+                "INNER JOIN user u ON l.id_user = u.id_user " +
+                "WHERE `date` >= DATE_SUB(NOW(), INTERVAL 15 DAY) AND u.id_user = ? " +
+                "GROUP BY genre " +
+                "ORDER BY COUNT(genre) DESC LIMIT 1);";
+        Connection connection = dataSource.getConnection();
+        Playlist playlist = new Playlist();
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setInt(1, userId);
+
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            List<Content> songs = new ArrayList<Content>();
+            while(rs.next()) {
+                Content song = new Content();
+                song.setId(rs.getInt("id_content"));
+                song.setName(rs.getString("name"));
+                song.setLength(rs.getInt("length"));
+                song.setGenre(rs.getString("genre"));
+                song.setLanguage(rs.getString("language"));
+                songs.add(song);
+            }
+            playlist.setContentList(songs);
+        }
+        playlist.setName("Recomendacion de genero: " + playlist.getContentList().get(1).getGenre());
+        return playlist;
+    }
+
     //  CREATE
     public Playlist create(PlaylistDTO playlistDTO) throws SQLException {
         String QUERY = "INSERT INTO Playlist (name, created_at, id_user) " + "VALUES(?, ?, ?);";

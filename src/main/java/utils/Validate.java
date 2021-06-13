@@ -33,11 +33,6 @@ public class Validate {
         return email;
     }
 
-    //TODO {rellenar esta funcion}
-    public static String validateDate(String date) throws ValidationException {
-        return null;
-    }
-
     public static String validatePassword(String password) throws ValidationException {
         password = validateString(password);
         if(password.length() < 5)
