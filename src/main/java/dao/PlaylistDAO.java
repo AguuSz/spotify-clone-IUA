@@ -5,10 +5,13 @@ import main.java.dto.ContentDTO;
 import main.java.dto.PlaylistDTO;
 import main.java.models.Content;
 import main.java.models.Playlist;
+import main.java.utils.DateTime;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PlaylistDAO {
@@ -33,6 +36,7 @@ public class PlaylistDAO {
                 playlist = new Playlist();
                 playlist.setId(rs.getInt("id_playlist"));
                 playlist.setName(rs.getString("name"));
+                playlist.setUserId(rs.getInt("id_user"));
                 playlist.setContentList(findContentByPlayList(playlist.getId(), connection));
             }
         }
@@ -58,9 +62,7 @@ public class PlaylistDAO {
                 playlist.setContentList(findContentByPlayList(playlist.getId(), connection));
                 playlists.add(playlist);
             }
-
         }
-
         return playlists;
     }
 
@@ -77,6 +79,29 @@ public class PlaylistDAO {
 
             ResultSet rs = preparedStatement.executeQuery();
 
+            while (rs.next()) {
+                Playlist playlist = new Playlist();
+                playlist.setId(rs.getInt("id_playlist"));
+                playlist.setName(rs.getString("name"));
+                playlist.setContentList(findContentByPlayList(playlist.getId(), connection));
+                playlists.add(playlist);
+            }
+        }
+        return playlists;
+    }
+
+    public List<Playlist> findByUserId(int id) throws SQLException {
+        String QUERY = "SELECT * FROM playlist WHERE id_user = ?;";
+        Connection connection = dataSource.getConnection();
+        List<Playlist> playlists = new ArrayList<>();
+
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, id);
+
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Playlist playlist = new Playlist();
                 playlist.setId(rs.getInt("id_playlist"));
@@ -133,7 +158,7 @@ public class PlaylistDAO {
         try (connection) {
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, playlistDTO.getName());
-            preparedStatement.setDate(2, playlistDTO.getCreatedAt());
+            preparedStatement.setTimestamp(2, playlistDTO.getCreatedAt());
             preparedStatement.setInt(3, playlistDTO.getUserId());
 
             System.out.println(preparedStatement);
@@ -145,6 +170,28 @@ public class PlaylistDAO {
                 playlist = new Playlist(playlistDTO);
                 playlist.setId(rs.getInt(1));
             }
+        }
+        return playlist;
+    }
+
+    public Playlist deleteContent(int playlistId, int contentId) throws SQLException {
+        String QUERY = "DELETE FROM adds WHERE id_playlist = ? AND id_content = ?;";
+        Connection connection = dataSource.getConnection();
+
+        Playlist playlist = null;
+
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, playlistId);
+            preparedStatement.setInt(2, contentId);
+
+            System.out.println(preparedStatement);
+
+            preparedStatement.executeUpdate();
+
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+
+            playlist = findOne(playlistId);
         }
         return playlist;
     }
@@ -163,14 +210,38 @@ public class PlaylistDAO {
 
             preparedStatement.executeUpdate();
 
-            playlist = new Playlist(playlistDTO);
+            playlist = findOne(playlistDTO.getId());
         }
 
         return playlist;
     }
 
+    public Playlist insertContent(int playlistId, int userId, ContentDTO dto) throws SQLException {
+        String QUERY = "INSERT INTO adds (id_playlist, id_user, id_content, created_date) VALUES(?, ?, ?, ?);";
+        Connection connection = dataSource.getConnection();
+
+        Playlist playlist = null;
+
+        try (connection) {
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, playlistId);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.setInt(3, dto.getId());
+            preparedStatement.setTimestamp(4, DateTime.now());
+
+            System.out.println(preparedStatement);
+
+            preparedStatement.executeUpdate();
+
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            playlist = findOne(playlistId);
+
+        }
+        return playlist;
+    }
+
     // DELETE
-    public boolean delete(int id) throws SQLException {
+    public Playlist delete(int id) throws SQLException {
         String QUERY = "DELETE FROM Playlist WHERE id_playlist = ?;";
         Connection connection = dataSource.getConnection();
         Playlist playlist;
@@ -181,15 +252,12 @@ public class PlaylistDAO {
 
             System.out.println(preparedStatement);
             playlist = findOne(id);
+            preparedStatement.executeUpdate();
         }
 
-        return true;
+        return playlist;
     }
 
-    // TODO: Rellenar contenido
-    public boolean insertContent(int id, ContentDTO dto) {
-        return true;
-    }
 
     // Auxiliar
 

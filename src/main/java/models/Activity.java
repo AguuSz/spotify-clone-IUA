@@ -1,14 +1,12 @@
 package main.java.models;
 
-import main.java.utils.Formatter;
-
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Activity {
     private int userId;
     private int idContent;
-    private String date;
+    private Timestamp date;
 
     public int getUserId() {
         return userId;
@@ -26,16 +24,12 @@ public class Activity {
         this.idContent = idContent;
     }
 
-    public String getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Timestamp date) {
         this.date = date;
-    }
-
-    public void setDate(Date date) {
-        this.date = Formatter.formatDate(date);
     }
 
     @Override

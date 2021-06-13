@@ -1,9 +1,6 @@
 package main.java.dto;
 
-import main.java.exception.ValidationException;
-import main.java.utils.Validate;
-
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class DeviceDTO {
 
@@ -12,24 +9,21 @@ public class DeviceDTO {
     private int userId;
     private String name;
     private String model;
-    private Date pairingDate;
+    private Timestamp pairingDate;
 
-    public DeviceDTO (String macAddress, int idUser, String name, String model, Date pairingDate) throws ValidationException {
-        Validate.validateMacAddress(macAddress);
+    public DeviceDTO(String macAddress, int idUser, String name, String model, Timestamp pairingDate) {
         this.macAddress = macAddress;
-        Validate.validateId(userId);
         this.userId = idUser;
-        this.name = Validate.validateString(name);
-        this.model = Validate.validateString(model);
-        this.pairingDate = Validate.validateDate(pairingDate);
+        this.name = name;
+        this.model = model;
+        this.pairingDate = pairingDate;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) throws ValidationException {
-        Validate.validateId(id);
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -37,8 +31,7 @@ public class DeviceDTO {
         return macAddress;
     }
 
-    public void setMacAddress(String macAddress) throws ValidationException {
-        Validate.validateMacAddress(macAddress);
+    public void setMacAddress(String macAddress) {
         this.macAddress = macAddress;
     }
 
@@ -46,8 +39,7 @@ public class DeviceDTO {
         return userId;
     }
 
-    public void setUserId(int userId) throws ValidationException {
-        Validate.validateId(userId);
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -55,23 +47,23 @@ public class DeviceDTO {
         return name;
     }
 
-    public void setName(String name) throws ValidationException {
-        this.name = Validate.validateString(name);
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) throws ValidationException {
-        this.model = Validate.validateString(model);
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public Date getPairingDate() {
+    public Timestamp getPairingDate() {
         return pairingDate;
     }
 
-    public void setPairingDate(Date paringDate) throws ValidationException {
-        this.pairingDate = Validate.validateDate(paringDate);
+    public void setPairingDate(Timestamp paringDate) {
+        this.pairingDate = paringDate;
     }
 }

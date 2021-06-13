@@ -1,24 +1,21 @@
 package main.java.dto;
 
-import main.java.exception.ValidationException;
-import main.java.utils.Validate;
-
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class UserDTO {
     private int id;
     private String name;
     private String lastName;
     private String email;
-    private Date birthdate;
+    private Timestamp birthdate;
     private String password;
     private String country;
 
-    public UserDTO(String name, String lastName, String email, Date birthdate, String password, String country) {
+    public UserDTO(String name, String lastName, String email, Timestamp birthdate, String password, String country) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
-        this.birthdate = birthdate;
+        this.birthdate =birthdate;
         this.password = password;
         this.country = country;
     }
@@ -51,15 +48,15 @@ public class UserDTO {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email)  {
         this.email = email;
     }
 
-    public Date getBirthdate() {
+    public Timestamp getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(Timestamp birthdate) {
         this.birthdate = birthdate;
     }
 

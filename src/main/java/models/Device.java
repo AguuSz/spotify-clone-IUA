@@ -2,8 +2,7 @@ package main.java.models;
 
 import main.java.dto.DeviceDTO;
 
-import java.sql.Date;
-import java.util.Objects;
+import java.sql.Timestamp;
 
 public class Device {
     private int id;
@@ -11,7 +10,7 @@ public class Device {
     private int userId;
     private String name;
     private String model;
-    private Date pairingDate;
+    private Timestamp pairingDate;
 
     public Device() {
     }
@@ -64,11 +63,11 @@ public class Device {
         this.model = model;
     }
 
-    public Date getPairingDate() {
+    public Timestamp getPairingDate() {
         return pairingDate;
     }
 
-    public void setPairingDate(Date paringDate) {
+    public void setPairingDate(Timestamp paringDate) {
         this.pairingDate = paringDate;
     }
 }

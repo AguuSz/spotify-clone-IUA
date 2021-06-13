@@ -20,8 +20,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findOneByEmail(String email) throws ValidationException, SQLException {
-        email = Validate.validateEmail(email);
+    public User findOneByEmail(String email) throws SQLException {
         return dao.findByEmail(email);
     }
 
@@ -34,11 +33,6 @@ public class UserService implements IUserService {
     @Override
     public User updateOne(UserDTO dto) throws SQLException {
         return dao.update(dto);
-    }
-
-    @Override
-    public User createOne(UserDTO dto) throws SQLException {
-        return dao.create(dto);
     }
 
     @Override

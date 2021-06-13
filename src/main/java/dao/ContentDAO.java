@@ -18,7 +18,7 @@ public class ContentDAO {
     public Content findOne(int id) throws SQLException {
 
         String QUERY = "SELECT id_content, name, length, genre, language FROM content INNER JOIN genre ON content.id_genre = content.id_genre " +
-                "INNER JOIN language ON content.id_language = language.id_language" +
+                "INNER JOIN language ON content.id_language = language.id_language " +
                 "WHERE id_content = ?;";
         Connection connection = dataSource.getConnection();
         Content content = null;
@@ -98,17 +98,13 @@ public class ContentDAO {
                 content.setLength(rs.getInt("length"));
                 content.setGenre(rs.getString("genre"));
                 content.setLanguage(rs.getString("language"));
-                content.setDate(rs.getDate("date"));
+                content.setDate(rs.getTimestamp("date"));
                 content.setArtists(findArtistByContent(content.getId(), connection));
                 content.setAlbums(findArtistByAlbum(content.getId(), connection));
 
                 contentList.add(content);
             }
-
-        } catch (ValidationException e) {
-            e.printStackTrace();
         }
-
         return contentList;
     }
 

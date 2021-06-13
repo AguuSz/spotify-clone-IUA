@@ -30,7 +30,7 @@ public class DeviceDAO {
             preparedStatement.setInt(2, deviceDTO.getUserId());
             preparedStatement.setString(3, deviceDTO.getName());
             preparedStatement.setString(4, deviceDTO.getModel());
-            preparedStatement.setDate(5, deviceDTO.getPairingDate());
+            preparedStatement.setTimestamp(5, deviceDTO.getPairingDate());
 
             System.out.println(preparedStatement);
 
@@ -66,7 +66,7 @@ public class DeviceDAO {
                 device.setUserId(rs.getInt("id_user"));
                 device.setName(rs.getString("name"));
                 device.setModel(rs.getString("model"));
-                device.setPairingDate(rs.getDate("pairing_date"));
+                device.setPairingDate(rs.getTimestamp("pairing_date"));
             }
         }
         return device;
@@ -92,7 +92,7 @@ public class DeviceDAO {
                 device.setUserId(rs.getInt("id_user"));
                 device.setName(rs.getString("name"));
                 device.setModel(rs.getString("model"));
-                device.setPairingDate(rs.getDate("pairing_date"));
+                device.setPairingDate(rs.getTimestamp("pairing_date"));
                 deviceList.add(device);
             }
         }
@@ -119,7 +119,7 @@ public class DeviceDAO {
                 device.setUserId(rs.getInt("id_user"));
                 device.setName(rs.getString("name"));
                 device.setModel(rs.getString("model"));
-                device.setPairingDate(rs.getDate("pairing_date"));
+                device.setPairingDate(rs.getTimestamp("pairing_date"));
             }
         }
         return device;
@@ -145,7 +145,7 @@ public class DeviceDAO {
                 device.setUserId(rs.getInt("id_user"));
                 device.setName(rs.getString("name"));
                 device.setModel(rs.getString("model"));
-                device.setPairingDate(rs.getDate("pairing_date"));
+                device.setPairingDate(rs.getTimestamp("pairing_date"));
                 deviceList.add(device);
             }
         }
@@ -173,7 +173,7 @@ public class DeviceDAO {
                 device.setUserId(rs.getInt("id_user"));
                 device.setName(rs.getString("name"));
                 device.setModel(rs.getString("model"));
-                device.setPairingDate(rs.getDate("pairing_date"));
+                device.setPairingDate(rs.getTimestamp("pairing_date"));
                 deviceList.add(device);
             }
         }
@@ -192,7 +192,7 @@ public class DeviceDAO {
             preparedStatement.setInt(2, deviceDTO.getUserId());
             preparedStatement.setString(3, deviceDTO.getName());
             preparedStatement.setString(4, deviceDTO.getModel());
-            preparedStatement.setDate(5, deviceDTO.getPairingDate());
+            preparedStatement.setTimestamp(5, deviceDTO.getPairingDate());
             preparedStatement.setInt(6, deviceDTO.getId());
 
             System.out.println(preparedStatement);

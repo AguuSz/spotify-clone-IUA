@@ -2,7 +2,7 @@ package main.java.models;
 
 import main.java.dto.UserDTO;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ public class User {
     private String name;
     private String lastName;
     private String email;
-    private Date birthdate;
+    private Timestamp birthdate;
     private String password;
     private String country;
     private List<User> friends;
@@ -62,11 +62,11 @@ public class User {
         this.email = email;
     }
 
-    public Date getBirthdate() {
+    public Timestamp getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(Timestamp birthdate) {
         this.birthdate = birthdate;
     }
 

@@ -1,27 +1,34 @@
 package main.java;
 
 import main.java.dao.ArtistDAO;
+import main.java.dao.PlaylistDAO;
 import main.java.dao.UserDAO;
+import main.java.dto.ContentDTO;
+import main.java.dto.PlaylistDTO;
 import main.java.dto.UserDTO;
+import main.java.exception.ForbiddenAccessException;
 import main.java.exception.NotFoundException;
 import main.java.exception.ValidationException;
 import main.java.interfaces.ICountryService;
 import main.java.interfaces.IUserService;
 import main.java.models.Artist;
+import main.java.models.Content;
+import main.java.models.Playlist;
 import main.java.models.User;
-import main.java.services.ArtistService;
-import main.java.services.AuthService;
-import main.java.services.CountryService;
-import main.java.services.UserService;
-import main.java.utils.Formatter;
+import main.java.services.*;
+import main.java.utils.DateTime;
 
 import java.sql.*;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.sql.Date;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        AuthService authService = new AuthService();
+
+        //AuthService authService = new AuthService();
 
         // Registrando un usuario
         /*try {
@@ -65,17 +72,6 @@ public class Main {
             IUserService userService = new UserService();
             System.out.println(userService.findByName("Aure"));
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
-
-        // Creando usuario TODO {todavia falta probar}
-        /*try {
-            IUserService userService = new UserService();
-            UserDTO dto = new UserDTO("Agustin",
-                    "Sanguesa", "sanguesa030@alumnos.com",
-                    new Date(2002, 01, 01), "salgruesa", "Argentina");
-            System.out.println(userService.createOne(dto));
-        } catch (SQLException | ValidationException throwables) {
             throwables.printStackTrace();
         }*/
 
@@ -128,5 +124,76 @@ public class Main {
             } catch (ValidationException | SQLException throwables) {
                 throwables.printStackTrace();
             }*/
+
+        //PlaylistDAO
+        //Pidiendo una por id
+        /*try {
+            PlaylistService playlistService = new PlaylistService();
+            System.out.println(playlistService.findOne(1));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
+        //Pidiendo por nombre
+        /*try {
+            PlaylistService playlistService = new PlaylistService();
+            System.out.println(playlistService.findByName("o"));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
+        //Pidiendo por user
+        /*try {
+            PlaylistService playlistService = new PlaylistService();
+            System.out.println(playlistService.findByUserId(2));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
+        //Borrando una playlist
+        /*try {
+            PlaylistService playlistService = new PlaylistService();
+            System.out.println(playlistService.delete(2));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
+        //Creando una playlist
+        /*try {
+            PlaylistService playlistService = new PlaylistService();
+            System.out.println(playlistService.create(new PlaylistDTO(1, "chill", 1)));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
+        //Metiendole contenido a playlist
+        /*try {
+            PlaylistService playlistService = new PlaylistService();
+            System.out.println(playlistService.
+                    insertContent(1, 1, new ContentDTO(134,"100", 5, "Reggaeton", "Spanish")));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
+        //Metiendole lista de contenido a playlist
+        /*try {
+            PlaylistService playlistService = new PlaylistService();
+            List<ContentDTO> dto = new ArrayList<>();
+            for(int i = 145; i < 162; i++) {
+                dto.add(new ContentDTO(i, "a", 5, "a", "a"));
+            }
+            System.out.println(playlistService.
+                    insertContent(1,1, dto));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
+        //Actualizando una playlist
+        /*try {
+            PlaylistService playlistService = new PlaylistService();
+            System.out.println(playlistService.update(new PlaylistDTO(1,"Chota", 8)));
+        } catch (SQLException | ForbiddenAccessException throwables) {
+            throwables.printStackTrace();
+        }*/
+        //Borrar contenido de la playlist
+        /*try {
+            PlaylistService playlistService = new PlaylistService();
+            System.out.println(playlistService.deleteContent(1,154));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
     }
 }

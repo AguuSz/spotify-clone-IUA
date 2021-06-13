@@ -13,7 +13,6 @@ public interface IUserService {
     public User findOneByEmail(String email) throws ValidationException, SQLException;
     public List<User> findByName(String name) throws SQLException, ValidationException;
     public User updateOne(UserDTO dto) throws ValidationException, SQLException;
-    public User createOne(UserDTO dto) throws SQLException;
     public User deleteOne(int id) throws ValidationException, SQLException;
     public User addFriend(int userId, int friendId) throws ValidationException, SQLException;
     public List<User> getFriendsList(int id) throws ValidationException, SQLException;

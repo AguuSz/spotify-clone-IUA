@@ -2,15 +2,37 @@ package main.java.dto;
 
 import main.java.models.Artist;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class ContentDTO {
+    private int id;
     private String name;
     private int length;
     private String genre;
     private String language;
+    private Timestamp date;
     private List<Artist> artists;
     private List<String> albums;
+
+    public ContentDTO(){
+    }
+
+    public ContentDTO(int id, String name, int length, String genre, String language) {
+        this.id = id;
+        this.name = name;
+        this.length = length;
+        this.genre = genre;
+        this.language = language;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -42,6 +64,14 @@ public class ContentDTO {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 
     public List<Artist> getArtists() {

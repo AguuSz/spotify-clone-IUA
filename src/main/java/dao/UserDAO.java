@@ -33,7 +33,7 @@ public class UserDAO {
                 user.setName(rs.getString("name"));
                 user.setLastName(rs.getString("last_name"));
                 user.setEmail(rs.getString("email"));
-                user.setBirthdate(rs.getDate("birthdate"));
+                user.setBirthdate(rs.getTimestamp("birthdate"));
                 user.setCountry(rs.getString("country.name"));
                 user.setPassword(rs.getString("password"));
             }
@@ -60,7 +60,7 @@ public class UserDAO {
                 user.setName(rs.getString("name"));
                 user.setLastName(rs.getString("last_name"));
                 user.setEmail(rs.getString("email"));
-                user.setBirthdate(rs.getDate("birthdate"));
+                user.setBirthdate(rs.getTimestamp("birthdate"));
                 user.setCountry(rs.getString("country.name"));
                 user.setPassword(rs.getString("password"));
             }
@@ -89,7 +89,7 @@ public class UserDAO {
                 user.setName(rs.getString("name"));
                 user.setLastName(rs.getString("last_name"));
                 user.setEmail(rs.getString("email"));
-                user.setBirthdate(rs.getDate("birthdate"));
+                user.setBirthdate(rs.getTimestamp("birthdate"));
                 user.setCountry(rs.getString("country.name"));
                 users.add(user);
             }
@@ -117,7 +117,7 @@ public class UserDAO {
                 user.setName(rs.getString("name"));
                 user.setLastName(rs.getString("last_name"));
                 user.setEmail(rs.getString("email"));
-                user.setBirthdate(rs.getDate("birthdate"));
+                user.setBirthdate(rs.getTimestamp("birthdate"));
                 user.setCountry(rs.getString("country.name"));
                 users.add(user);
             }
@@ -144,7 +144,7 @@ public class UserDAO {
                 user.setName(rs.getString("name"));
                 user.setLastName(rs.getString("last_name"));
                 user.setEmail(rs.getString("email"));
-                user.setBirthdate(rs.getDate("birthdate"));
+                user.setBirthdate(rs.getTimestamp("birthdate"));
                 user.setCountry(rs.getString("country.name"));
                 users.add(user);
             }
@@ -162,7 +162,7 @@ public class UserDAO {
             preparedStatement.setString(1, userDTO.getName());
             preparedStatement.setString(2, userDTO.getLastName());
             preparedStatement.setString(3, userDTO.getEmail());
-            preparedStatement.setDate(4, userDTO.getBirthdate());
+            preparedStatement.setTimestamp(4, userDTO.getBirthdate());
             preparedStatement.setString(5, userDTO.getPassword());
             preparedStatement.setInt(6, new CountryDAO().findByName(userDTO.getCountry()).get(0).getId());
 
@@ -190,7 +190,7 @@ public class UserDAO {
             preparedStatement.setString(1, userDTO.getName());
             preparedStatement.setString(2, userDTO.getLastName());
             preparedStatement.setString(3, userDTO.getEmail());
-            preparedStatement.setDate(4, userDTO.getBirthdate());
+            preparedStatement.setTimestamp(4, userDTO.getBirthdate());
             preparedStatement.setString(5, userDTO.getPassword());
             preparedStatement.setInt(6, new CountryDAO().findByName(userDTO.getCountry()).get(0).getId());
             preparedStatement.setInt(7, userDTO.getId());
@@ -277,7 +277,7 @@ public class UserDAO {
                 friend.setName(rs.getString("name"));
                 friend.setLastName(rs.getString("last_name"));
                 friend.setEmail(rs.getString("email"));
-                friend.setBirthdate(rs.getDate("birthdate"));
+                friend.setBirthdate(rs.getTimestamp("birthdate"));
                 friend.setCountry(rs.getString("country.name"));
                 friends.add(friend);
             }
@@ -301,7 +301,7 @@ public class UserDAO {
                 Activity activity = new Activity();
                 activity.setUserId(rs.getInt("id_user"));
                 activity.setIdContent(rs.getInt("id_content"));
-                activity.setDate(rs.getString("date"));
+                activity.setDate(rs.getTimestamp("date"));
                 activityList.add(activity);
             }
         }

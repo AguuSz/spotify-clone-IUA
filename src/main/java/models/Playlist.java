@@ -2,22 +2,23 @@ package main.java.models;
 
 import main.java.dto.PlaylistDTO;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Playlist {
     private int id;
+    private int userId;
     private String name;
-    private Date createdAt;
+    private Timestamp createdAt;
     private List<Content> contentList = new ArrayList<>();
 
     public Playlist() {
     }
 
-    public Playlist(PlaylistDTO pll) {
-        this.name = pll.getName();
+    public Playlist(PlaylistDTO dto) {
+        this.name = dto.getName();
     }
 
     public int getId() {
@@ -28,12 +29,28 @@ public class Playlist {
         this.id = id;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
     public List<Content> getContentList() {
