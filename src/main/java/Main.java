@@ -195,5 +195,14 @@ public class Main {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }*/
+
+        try {
+            UserDTO userDTO = new UserDTO("Agustin", "Sepulveda", "agus.sepu92@gmail.com", DateTime.now(), "gorogil123", "Arg");
+            AuthService authService = new AuthService();
+            authService.register(userDTO);
+            System.out.println(userDTO);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }

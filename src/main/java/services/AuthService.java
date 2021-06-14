@@ -6,6 +6,8 @@ import main.java.exception.*;
 import main.java.models.User;
 
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AuthService {
     UserDAO userDAO = new UserDAO();
@@ -37,7 +39,7 @@ public class AuthService {
 
     private boolean userExists(String email) throws SQLException {
         User user = this.userDAO.findByEmail(email);
-        return (user == null);
+        return (user != null);
     }
 
     private boolean didFieldsPassValidation(String email, String password) throws InvalidEmailException, InvalidPasswordException {
@@ -49,9 +51,8 @@ public class AuthService {
          */
 
         if (password.length() < 6) throw new InvalidPasswordException("La password debe tener mas de 6 caracteres.");
-        if (!password.matches("^(?=.*[0-9])(?=.*[a-z])$")) throw new InvalidPasswordException("La password debe tener minimo 1 digito, y 1 letra minuscula por lo menos.");
 
-        if (!email.matches("^[\\\\w!#$%&’*+/=?`{|}~^-]+(?:\\\\.[\\\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\\\.)+[a-zA-Z]{2,6}$")) throw new InvalidEmailException("Ingrese un correo valido.");
+        if (!email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) throw new InvalidEmailException("Ingrese un correo valido.");
 
         return true;
     }

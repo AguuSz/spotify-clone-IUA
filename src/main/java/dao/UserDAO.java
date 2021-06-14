@@ -168,6 +168,8 @@ public class UserDAO {
 
             System.out.println(preparedStatement);
 
+            preparedStatement.executeUpdate();
+
             ResultSet rs = preparedStatement.getGeneratedKeys();
 
             while (rs.next()) {
