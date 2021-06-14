@@ -36,6 +36,7 @@ public class UserDAO {
                 user.setBirthdate(rs.getTimestamp("birthdate"));
                 user.setCountry(rs.getString("country.name"));
                 user.setPassword(rs.getString("password"));
+                user.setFriends(getFriendsList(user.getId()));
             }
         }
         return user;
@@ -63,6 +64,7 @@ public class UserDAO {
                 user.setBirthdate(rs.getTimestamp("birthdate"));
                 user.setCountry(rs.getString("country.name"));
                 user.setPassword(rs.getString("password"));
+                user.setFriends(getFriendsList(user.getId()));
             }
         }
         return user;
@@ -91,6 +93,7 @@ public class UserDAO {
                 user.setEmail(rs.getString("email"));
                 user.setBirthdate(rs.getTimestamp("birthdate"));
                 user.setCountry(rs.getString("country.name"));
+                user.setFriends(getFriendsList(user.getId()));
                 users.add(user);
             }
         }
@@ -119,6 +122,7 @@ public class UserDAO {
                 user.setEmail(rs.getString("email"));
                 user.setBirthdate(rs.getTimestamp("birthdate"));
                 user.setCountry(rs.getString("country.name"));
+                user.setFriends(getFriendsList(user.getId()));
                 users.add(user);
             }
         }
@@ -146,6 +150,7 @@ public class UserDAO {
                 user.setEmail(rs.getString("email"));
                 user.setBirthdate(rs.getTimestamp("birthdate"));
                 user.setCountry(rs.getString("country.name"));
+                user.setFriends(user.getFriends());
                 users.add(user);
             }
         }

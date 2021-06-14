@@ -6,9 +6,7 @@ import main.java.dao.UserDAO;
 import main.java.dto.ContentDTO;
 import main.java.dto.PlaylistDTO;
 import main.java.dto.UserDTO;
-import main.java.exception.ForbiddenAccessException;
-import main.java.exception.NotFoundException;
-import main.java.exception.ValidationException;
+import main.java.exception.*;
 import main.java.interfaces.ICountryService;
 import main.java.interfaces.IUserService;
 import main.java.models.Artist;
@@ -28,84 +26,119 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        //AuthService authService = new AuthService();
+        AuthService authService = new AuthService();
 
         // Registrando un usuario
-        /*try {
-            UserDTO userDTO = new UserDTO("El charky", "Camargo", "elcharky@gmail.com", Formatter.formatDate(new Date()), "passwordop", "1");
+        try {
+            UserDTO userDTO = new UserDTO("El charky", "Camargo", "elcharky@gmail.com", DateTime.now(), "passwordop", "Argentina");
             User user = authService.register(userDTO);
             System.out.println(user);
-        } catch (SQLException e) {
+        } catch(Exception e){
             System.out.println(e);
-        }*/
+        }
+
+        try {
+            UserDTO userDTO = new UserDTO("Agustin", "Sepulveda", "agus.sepu92@gmail.com", DateTime.now(), "gorogil123", "Argentina");
+            authService.register(userDTO);
+            System.out.println(userDTO);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        try {
+            UserDTO userDTO = new UserDTO("Agustin", "Sanguesa", "agussanguesa@gmail.com", DateTime.now(), "eaegordao23", "Argentina");
+            authService.register(userDTO);
+            System.out.println(userDTO);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        try {
+            UserDTO userDTO = new UserDTO("Aurelio", "Garcia", "aurebidart@gmail.com", DateTime.now(), "aure2002", "Arg");
+            authService.register(userDTO);
+            System.out.println(userDTO);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
         // Pidiendo artistas de un pais
 
 
         // Loggeando al usuario
-        /*try {
+
+        System.out.println("Logueando");
+
+        try {
             User user2 = authService.login("elcharky@gmail.com", "passwordop");
             System.out.println(user2);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
-        }*/
+        }
 
-        //UserService
-        // Pidiendo detalles de un usuario por id
-        /*try {
+        // UserService
+        System.out.println("Pidiendo detalles de un usuario por id");
+        try {
             IUserService userService = new UserService();
-            System.out.println(userService.findOne(3));
-        } catch (SQLException | ValidationException throwables) {
-            throwables.printStackTrace();
-        }*/
+            System.out.println(userService.findOne(1));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
-        // Pidiendo detalles de un usuario por email
-        /*try {
+        System.out.println("Pidiendo detalles de un usuario por email");
+        try {
             IUserService userService = new UserService();
             System.out.println(userService.findOneByEmail("elcharky@gmail.com"));
-        } catch (SQLException | ValidationException throwables) {
-            throwables.printStackTrace();
-        }*/
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
-        // Pidiendo detalles de un usuario por nombre
-        /*try {
+        //Pidiendo detalles de un usuario por nombre
+        System.out.println("Pidiendo detalles de un usuario por nombre");
+        try {
             IUserService userService = new UserService();
-            System.out.println(userService.findByName("Aure"));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+            System.out.println(userService.findByName("Agustin"));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
         // Agregando amigo
-       /*try {
+        System.out.println("Agregando un amigo");
+       try {
            IUserService userService = new UserService();
-           System.out.println(userService.addFriend(3,2));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
-
-        // Eliminando amigo
-        /*try {
-            IUserService userService = new UserService();
-            System.out.println(userService.deleteFriend(1,2));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+           System.out.println(userService.addFriend(1,2));
+        } catch (Exception e) {
+           System.out.println(e);
+        }
 
         // Pidiendo lista de amigos
-        /*try {
+        System.out.println("Pidiendo lista de amigos del usuario 1");
+        try {
             IUserService userService = new UserService();
-            System.out.println(userService.getFriendsList(3));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+            System.out.println(userService.getFriendsList(1));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        // Eliminando amigo
+
+        System.out.println("Eliminando de amigos el usuario de id 1 y 2");
+        try {
+            IUserService userService = new UserService();
+            System.out.println(userService.deleteFriend(1,2));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+
 
         // Pidiendo actividad
-        /*try {
+        System.out.println("Pidiendo actividad");
+        try {
             IUserService userService = new UserService();
             System.out.println(userService.getActivity(1));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
 
         //CountryService
@@ -195,14 +228,5 @@ public class Main {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }*/
-
-        try {
-            UserDTO userDTO = new UserDTO("Agustin", "Sepulveda", "agus.sepu92@gmail.com", DateTime.now(), "gorogil123", "Arg");
-            AuthService authService = new AuthService();
-            authService.register(userDTO);
-            System.out.println(userDTO);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
     }
 }
