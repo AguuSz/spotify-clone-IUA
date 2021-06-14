@@ -164,23 +164,27 @@ public class Main {
 
         //CountryService
         // Pidiendo por id
-        /*try {
+        System.out.println("Pidiendo pais por id 1");
+        try {
             ICountryService countryService = new CountryService();
             System.out.println(countryService.findOne(1));
-        } catch (ValidationException | SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
         //Pidiendo por nombre
-        /*try {
+        System.out.println("Pidiendo pais por nombre");
+        try {
                 ICountryService countryService = new CountryService();
                 System.out.println(countryService.findByName("Col"));
             } catch (ValidationException | SQLException throwables) {
                 throwables.printStackTrace();
-            }*/
+            }
 
         //PlaylistDAO
+
         //Pidiendo una por id
+
         /*try {
             PlaylistService playlistService = new PlaylistService();
             System.out.println(playlistService.findOne(1));
