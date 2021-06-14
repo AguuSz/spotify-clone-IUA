@@ -3,6 +3,7 @@ package main.java.dao;
 import main.java.conf.DataSourceFactory;
 import main.java.dto.UserDTO;
 import main.java.models.Activity;
+import main.java.models.Content;
 import main.java.models.User;
 
 import javax.sql.DataSource;
@@ -309,6 +310,7 @@ public class UserDAO {
                 activity.setUserId(rs.getInt("id_user"));
                 activity.setIdContent(rs.getInt("id_content"));
                 activity.setDate(rs.getTimestamp("date"));
+                activity.setContent(new ContentDAO().findOne(activity.getIdContent()));
                 activityList.add(activity);
             }
         }

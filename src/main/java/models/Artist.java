@@ -41,7 +41,10 @@ public class Artist {
 
     @Override
     public String toString() {
-        return "Artist{" + "Id= " + id + ", Name= '" + name + '\'' + ", Country='" + country + '\'' + '}';
+        return "\nArtist { " +
+                "\n\tId = " + id +
+                "\n\tName = " + name +
+                "\n\tCountry = " + country + "\n}";
     }
 
     @Override

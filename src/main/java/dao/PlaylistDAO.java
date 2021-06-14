@@ -287,8 +287,8 @@ public class PlaylistDAO {
                 content.setLanguage(rs.getString("language"));
                 contentList.add(content);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return contentList;
     }

@@ -4,6 +4,7 @@ import main.java.conf.DataSourceFactory;
 import main.java.exception.ValidationException;
 import main.java.models.Artist;
 import main.java.models.Content;
+import main.java.utils.DateTime;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -173,6 +174,24 @@ public class ContentDAO {
         return contentList;
     }
 
+    public Content playContent(int userId, int contentId) throws SQLException {
+
+        String QUERY = "INSERT INTO listen SET id_content = ?, id_user = ?, date = ?;";
+
+        Content content = null;
+        Connection connection = dataSource.getConnection();
+
+        try(connection){
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setInt(1, contentId);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.setTimestamp(3, DateTime.now());
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+            content = findOne(contentId);
+        }
+        return content;
+    }
 
     // Auxiliares
 
@@ -231,4 +250,6 @@ public class ContentDAO {
 
         return albumList;
     }
+
+
 }

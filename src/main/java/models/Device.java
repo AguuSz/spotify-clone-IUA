@@ -70,4 +70,15 @@ public class Device {
     public void setPairingDate(Timestamp paringDate) {
         this.pairingDate = paringDate;
     }
+
+    @Override
+    public String toString() {
+        return "\nDevice {" +
+                "\n\tId = " + id +
+                "\n\tMacAddress = " + macAddress +
+                "\n\tUserId = " + userId +
+                "\n\tName = " + name +
+                "\n\tModel = " + model +
+                "\n\tPairingDate = " + pairingDate + "\n}";
+    }
 }

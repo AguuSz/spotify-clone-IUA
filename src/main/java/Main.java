@@ -7,6 +7,8 @@ import main.java.dto.ContentDTO;
 import main.java.dto.PlaylistDTO;
 import main.java.dto.UserDTO;
 import main.java.exception.*;
+import main.java.interfaces.IArtistService;
+import main.java.interfaces.IContentService;
 import main.java.interfaces.ICountryService;
 import main.java.interfaces.IUserService;
 import main.java.models.Artist;
@@ -60,8 +62,6 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e);
         }
-
-        // Pidiendo artistas de un pais
 
 
         // Loggeando al usuario
@@ -131,8 +131,17 @@ public class Main {
 
 
 
+        // Escuchando un tema
+        System.out.println("Escuchando cancion con usuario 1");
+        try{
+            IContentService contentService = new ContentService();
+            System.out.println(contentService.playContent(1,140));
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
         // Pidiendo actividad
-        System.out.println("Pidiendo actividad");
+        System.out.println("Mostrando actividad del usuario 1");
         try {
             IUserService userService = new UserService();
             System.out.println(userService.getActivity(1));
@@ -140,6 +149,18 @@ public class Main {
             System.out.println(e);
         }
 
+
+
+        // Pidiendo artistas de un pais
+
+        System.out.println("Pidiendo artistas de un pais");
+
+        try{
+            IArtistService artistService = new ArtistService();
+            System.out.println(artistService.findByCountry("Argentina"));
+        }catch(Exception e){
+            System.out.println(e);
+        }
 
         //CountryService
         // Pidiendo por id

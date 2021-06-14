@@ -13,4 +13,5 @@ public interface IContentService {
     public List<Content> findByGenre(String genre) throws SQLException, ValidationException;
     public List<Content> findByArtist(String artist) throws SQLException, ValidationException;
     public List<Content> findByLanguage(String language) throws SQLException, ValidationException;
+    public Content playContent(int userId, int contentId) throws SQLException, ValidationException;
 }

@@ -7,6 +7,7 @@ public class Activity {
     private int userId;
     private int idContent;
     private Timestamp date;
+    private Content content;
 
     public int getUserId() {
         return userId;
@@ -32,6 +33,14 @@ public class Activity {
         this.date = date;
     }
 
+    public Content getContent() {
+        return content;
+    }
+
+    public void setContent(Content content) {
+        this.content = content;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,10 +56,11 @@ public class Activity {
 
     @Override
     public String toString() {
-        return "Activity{" +
-                "userId=" + userId +
-                ", idContent=" + idContent +
-                ", date='" + date + '\'' +
-                '}';
+        return "\nActivity { " +
+                "\n\tuserId = " + userId +
+                ", \n\tidContent = " + idContent +
+                ", \n\tDate = " + date +
+                ", \n\tContent = " + content.getName() +
+                "\n}";
     }
 }

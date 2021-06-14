@@ -80,10 +80,9 @@ public class Playlist {
 
     @Override
     public String toString() {
-        return "Playlist{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", contentList=" + contentList +
-                '}';
+        return "\nPlaylist {" +
+                "\n\tId = " + id +
+                "\n\tName = " + name +
+                "\n\tContentList = " + contentList + "\n}";
     }
 }

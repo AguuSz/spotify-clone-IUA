@@ -153,17 +153,16 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", birthdate='" + birthdate + '\'' +
-                ", password='" + password + '\'' +
-                ", country='" + country + '\'' +
-                ", friends=" + friends +
-                ", devices=" + devices +
-                ", languagesPreferences=" + languagesPreferences +
-                '}';
+        return "\nUser {" +
+                "\n\tId = " + id +
+                "\n\tName = " + name +
+                "\n\tLastName = " + lastName +
+                "\n\tEmail = " + email +
+                "\n\tBirthdate = " + birthdate +
+                "\n\tPassword = " + password +
+                "\n\tCountry = " + country +
+                "\n\tFriends = " + friends +
+                "\n\tDevices = " + devices +
+                "\n\tLanguagesPreferences = " + languagesPreferences + "\n}";
     }
 }

@@ -37,4 +37,9 @@ public class ContentService implements IContentService {
     public List<Content> findByLanguage(String language) throws SQLException, ValidationException {
         return dao.findByLanguage(Validate.validateString(language));
     }
+
+    @Override
+    public Content playContent(int userId, int contentId) throws SQLException, ValidationException {
+        return dao.playContent(Validate.validateId(userId), Validate.validateId(contentId));
+    }
 }
