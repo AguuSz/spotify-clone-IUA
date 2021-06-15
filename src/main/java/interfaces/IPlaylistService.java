@@ -20,8 +20,8 @@ public interface IPlaylistService {
 
     //  UPDATE
     public Playlist update(PlaylistDTO dto) throws SQLException, ForbiddenAccessException;
-    public Playlist insertContent(int playlistId, int userId, ContentDTO dto) throws SQLException;
-    public Playlist insertContent(int PlaylistId, int userId, List<ContentDTO> dto) throws SQLException;
+    public Playlist insertContent(int playlistId, int userId, int contentId) throws SQLException;
+    public Playlist insertContent(int PlaylistId, int userId, List<Integer> contentId) throws SQLException;
 
     //  READ
     public Playlist findOne(int id) throws SQLException;

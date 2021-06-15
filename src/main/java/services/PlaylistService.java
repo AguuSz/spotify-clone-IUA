@@ -42,10 +42,10 @@ public class PlaylistService implements IPlaylistService {
     }
 
     @Override
-    public Playlist insertContent(int playlistId, int userId, ContentDTO dto) throws SQLException {
+    public Playlist insertContent(int playlistId, int userId, int contentId) throws SQLException {
         Playlist playlist = null;
         try {
-            playlist = insertContent(playlistId, userId, dto);
+            playlist = dao.insertContent(playlistId, userId, contentId);
         } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("Content already in playlist");
         }
@@ -53,11 +53,11 @@ public class PlaylistService implements IPlaylistService {
     }
 
     @Override
-    public Playlist insertContent(int playlistId, int userId, List<ContentDTO> dto) throws SQLException {
+    public Playlist insertContent(int playlistId, int userId, List<Integer> contentId) throws SQLException {
         Playlist playlist = null;
 
-        for(ContentDTO contentDTO : dto)
-            playlist = insertContent(playlistId, userId, contentDTO);
+        for(Integer simpleContentId : contentId)
+            playlist = insertContent(playlistId, userId, simpleContentId);
 
         return playlist;
     }

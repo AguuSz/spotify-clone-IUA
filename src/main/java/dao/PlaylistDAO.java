@@ -20,7 +20,7 @@ public class PlaylistDAO {
 
     //  READ
     public Playlist findOne(int id) throws SQLException {
-        String QUERY = "SELECT id_playlist, name FROM playlist WHERE id_playlist = ?;";
+        String QUERY = "SELECT id_playlist, id_user, name FROM playlist WHERE id_playlist = ?;";
         Connection connection = dataSource.getConnection();
         Playlist playlist = null;
 
@@ -150,7 +150,7 @@ public class PlaylistDAO {
 
     //  CREATE
     public Playlist create(PlaylistDTO playlistDTO) throws SQLException {
-        String QUERY = "INSERT INTO Playlist (name, created_at, id_user) " + "VALUES(?, ?, ?);";
+        String QUERY = "INSERT INTO Playlist (name, created_date, id_user) " + "VALUES(?, ?, ?);";
         Connection connection = dataSource.getConnection();
 
         Playlist playlist = null;
@@ -216,7 +216,7 @@ public class PlaylistDAO {
         return playlist;
     }
 
-    public Playlist insertContent(int playlistId, int userId, ContentDTO dto) throws SQLException {
+    public Playlist insertContent(int playlistId, int userId, int contentId) throws SQLException {
         String QUERY = "INSERT INTO adds (id_playlist, id_user, id_content, created_date) VALUES(?, ?, ?, ?);";
         Connection connection = dataSource.getConnection();
 
@@ -226,7 +226,7 @@ public class PlaylistDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, playlistId);
             preparedStatement.setInt(2, userId);
-            preparedStatement.setInt(3, dto.getId());
+            preparedStatement.setInt(3, contentId);
             preparedStatement.setTimestamp(4, DateTime.now());
 
             System.out.println(preparedStatement);

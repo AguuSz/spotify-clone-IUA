@@ -31,6 +31,7 @@ public class Main {
         AuthService authService = new AuthService();
 
         // Registrando un usuario
+        System.out.println("Registramos 4 usuarios");
         try {
             UserDTO userDTO = new UserDTO("El charky", "Camargo", "elcharky@gmail.com", DateTime.now(), "passwordop", "Argentina");
             User user = authService.register(userDTO);
@@ -66,7 +67,7 @@ public class Main {
 
         // Loggeando al usuario
 
-        System.out.println("Logueando");
+        System.out.println("Logueando con el usuario de id 1");
 
         try {
             User user2 = authService.login("elcharky@gmail.com", "passwordop");
@@ -76,7 +77,7 @@ public class Main {
         }
 
         // UserService
-        System.out.println("Pidiendo detalles de un usuario por id");
+        System.out.println("Pidiendo detalles de un usuario por id (1)");
         try {
             IUserService userService = new UserService();
             System.out.println(userService.findOne(1));
@@ -84,7 +85,7 @@ public class Main {
             System.out.println(e);
         }
 
-        System.out.println("Pidiendo detalles de un usuario por email");
+        System.out.println("Pidiendo detalles de un usuario por email (elcharky@gmail.com)");
         try {
             IUserService userService = new UserService();
             System.out.println(userService.findOneByEmail("elcharky@gmail.com"));
@@ -93,7 +94,8 @@ public class Main {
         }
 
         //Pidiendo detalles de un usuario por nombre
-        System.out.println("Pidiendo detalles de un usuario por nombre");
+
+        System.out.println("Pidiendo detalles de un usuario por nombre (Agustin)");
         try {
             IUserService userService = new UserService();
             System.out.println(userService.findByName("Agustin"));
@@ -102,10 +104,13 @@ public class Main {
         }
 
         // Agregando amigo
-        System.out.println("Agregando un amigo");
+
+        System.out.println("Agregando un amigo (id 1 con 2, 2 con 3 y 4 con 1)");
        try {
            IUserService userService = new UserService();
            System.out.println(userService.addFriend(1,2));
+           System.out.println(userService.addFriend(2,3));
+           System.out.println(userService.addFriend(4,1));
         } catch (Exception e) {
            System.out.println(e);
         }
@@ -177,75 +182,95 @@ public class Main {
         try {
                 ICountryService countryService = new CountryService();
                 System.out.println(countryService.findByName("Col"));
-            } catch (ValidationException | SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            } catch (Exception e) {
+            System.out.println(e);
+        }
 
         //PlaylistDAO
 
         //Pidiendo una por id
 
-        /*try {
+        System.out.println("Pedimos que nos muestre la playlist de id 1");
+
+        try {
             PlaylistService playlistService = new PlaylistService();
             System.out.println(playlistService.findOne(1));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
         //Pidiendo por nombre
-        /*try {
+
+        System.out.println("Pedimos una playlist por nombre (MiPlaylist)");
+        try {
             PlaylistService playlistService = new PlaylistService();
-            System.out.println(playlistService.findByName("o"));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+            System.out.println(playlistService.findByName("MiPlaylist"));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
         //Pidiendo por user
-        /*try {
+        System.out.println("Pedimos las playlist del usuario 1");
+        try {
             PlaylistService playlistService = new PlaylistService();
-            System.out.println(playlistService.findByUserId(2));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+            System.out.println(playlistService.findByUserId(1));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+
         //Borrando una playlist
-        /*try {
+        System.out.println("Borramos la playlist 'Gym' de id 3");
+        try {
             PlaylistService playlistService = new PlaylistService();
-            System.out.println(playlistService.delete(2));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+            System.out.println(playlistService.delete(3));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         //Creando una playlist
-        /*try {
+        System.out.println("Creamos la playlist 'Chill'");
+        try {
             PlaylistService playlistService = new PlaylistService();
             System.out.println(playlistService.create(new PlaylistDTO(1, "chill", 1)));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        System.out.println("Le metemos canciones a la playlist 'Chill'");
         //Metiendole contenido a playlist
-        /*try {
+
+        try {
             PlaylistService playlistService = new PlaylistService();
-            System.out.println(playlistService.
-                    insertContent(1, 1, new ContentDTO(134,"100", 5, "Reggaeton", "Spanish")));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+            System.out.println(playlistService.insertContent(4, 1, 128));
+            System.out.println(playlistService.insertContent(4, 1, 129));
+            System.out.println(playlistService.insertContent(4, 1, 130));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         //Metiendole lista de contenido a playlist
-        /*try {
+        System.out.println("Metemos una lista de canciones a una playlist");
+        try {
             PlaylistService playlistService = new PlaylistService();
-            List<ContentDTO> dto = new ArrayList<>();
+            List<Integer> contentList = new ArrayList<>();
             for(int i = 145; i < 162; i++) {
-                dto.add(new ContentDTO(i, "a", 5, "a", "a"));
+                contentList.add(i);
             }
-            System.out.println(playlistService.
-                    insertContent(1,1, dto));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
+            System.out.println(playlistService.insertContent(4,1, contentList));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
         //Actualizando una playlist
-        /*try {
+
+        //TODO No funciona, no valida que el usuario es dueno de la playlist
+        System.out.println("Cambiamos el nombre de la playlist 'Chill' a 'Relax'");
+        try {
             PlaylistService playlistService = new PlaylistService();
-            System.out.println(playlistService.update(new PlaylistDTO(1,"Chota", 8)));
-        } catch (SQLException | ForbiddenAccessException throwables) {
-            throwables.printStackTrace();
-        }*/
+            System.out.println(playlistService.update(new PlaylistDTO(4,"Relax", 1)));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
         //Borrar contenido de la playlist
         /*try {
             PlaylistService playlistService = new PlaylistService();
