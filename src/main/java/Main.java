@@ -31,311 +31,203 @@ public class Main {
 
         AuthService authService = new AuthService();
         IUserService userService = new UserService();
+        IContentService contentService = new ContentService();
+        IArtistService artistService = new ArtistService();
+        ICountryService countryService = new CountryService();
+        PlaylistService playlistService = new PlaylistService();
+
         Scanner scanner = new Scanner(System.in);
         String timeout;
+        User user2 = null;
 
-        // Registrando un usuario
-        System.out.println("Registramos 4 usuarios");
-        Thread.sleep(3000);
         try {
+            System.out.println("Registramos 4 usuarios");
+            Thread.sleep(3000);
+
             UserDTO userDTO = new UserDTO("El charky", "Camargo", "elcharky@gmail.com", DateTime.now(), "passwordop", "Argentina");
             User user = authService.register(userDTO);
             System.out.println(user);
-        } catch(Exception e){
-            System.out.println(e);
-        }
 
-        try {
-            UserDTO userDTO = new UserDTO("Agustin", "Sepulveda", "agus.sepu92@gmail.com", DateTime.now(), "gorogil123", "Argentina");
+            // ----------------------------------------------
+            userDTO = new UserDTO("Agustin", "Sepulveda", "agus.sepu92@gmail.com", DateTime.now(), "gorogil123", "Argentina");
             authService.register(userDTO);
             System.out.println(userDTO);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        try {
-            UserDTO userDTO = new UserDTO("Agustin", "Sanguesa", "agussanguesa@gmail.com", DateTime.now(), "eaegordao23", "Argentina");
+            // ----------------------------------------------
+            userDTO = new UserDTO("Agustin", "Sanguesa", "agussanguesa@gmail.com", DateTime.now(), "eaegordao23", "Argentina");
             authService.register(userDTO);
             System.out.println(userDTO);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        try {
-            UserDTO userDTO = new UserDTO("Aurelio", "Garcia", "aurebidart@gmail.com", DateTime.now(), "aure2002", "Arg");
+            // ----------------------------------------------
+            userDTO = new UserDTO("Aurelio", "Garcia", "aurebidart@gmail.com", DateTime.now(), "aure2002", "Arg");
             authService.register(userDTO);
             System.out.println(userDTO);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        // Loggeando al usuario
+            // ----------------------------------------------
+            System.out.println("Logueando con el usuario de id 1");
+            Thread.sleep(3000);
 
-        User user2 = null;
-        System.out.println("Logueando con el usuario de id 1");
-        Thread.sleep(3000);
-
-        try {
             user2 = authService.login("elcharky@gmail.com", "passwordop");
             System.out.println(user2);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            // ----------------------------------------------
+            scanner.next();
 
-        // UserService
-        System.out.println("Pidiendo detalles de un usuario por id (1)");
-        Thread.sleep(3000);
-        try {
-
+            // UserService
+            System.out.println("Pidiendo detalles de un usuario por id (1)");
+            Thread.sleep(3000);
             System.out.println(userService.findOne(user2.getId()));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        System.out.println("Pidiendo detalles de un usuario por email (elcharky@gmail.com)");
-        Thread.sleep(3000);
-        try {
+            System.out.println("Pidiendo detalles de un usuario por email (elcharky@gmail.com)");
+            Thread.sleep(3000);
             System.out.println(userService.findOneByEmail("elcharky@gmail.com"));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-
-
-        //Pidiendo detalles de un usuario por nombre
-
-        System.out.println("Pidiendo detalles de un usuario por nombre (Agustin)");
-        Thread.sleep(3000);
-        try {
+            //Pidiendo detalles de un usuario por nombre
+            System.out.println("Pidiendo detalles de un usuario por nombre (Agustin)");
+            Thread.sleep(3000);
             System.out.println(userService.findByName("Agustin"));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        // Agregando amigo
+            // Agregando amigo
+            System.out.println("Agregando un amigo (id 1 con 2, 2 con 3 y 4 con 1)");
+            Thread.sleep(3000);
+            System.out.println(userService.addFriend(user2.getId(),2));
+            System.out.println(userService.addFriend(2,3));
+            System.out.println(userService.addFriend(4,user2.getId()));
 
-        System.out.println("Agregando un amigo (id 1 con 2, 2 con 3 y 4 con 1)");
-        Thread.sleep(3000);
-       try {
-           System.out.println(userService.addFriend(user2.getId(),2));
-           System.out.println(userService.addFriend(2,3));
-           System.out.println(userService.addFriend(4,user2.getId()));
-        } catch (Exception e) {
-           System.out.println(e);
-        }
+            scanner.next();
 
-        scanner.next();
-
-        // Pidiendo lista de amigos
-        System.out.println("Pidiendo lista de amigos del usuario 1");
-        Thread.sleep(3000);
-        try {
+            // Pidiendo lista de amigos
+            System.out.println("Pidiendo lista de amigos del usuario 1");
+            Thread.sleep(3000);
             System.out.println(userService.getFriendsList(user2.getId()));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        // Eliminando amigo
-
-        System.out.println("Eliminando de amigos el usuario de id 1 y 2");
-        Thread.sleep(3000);
-        try {
+            // Eliminando amigo
+            System.out.println("Eliminando de amigos el usuario de id 1 y 2");
+            Thread.sleep(3000);
             System.out.println(userService.deleteFriend(user2.getId(),2));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-
-        // Escuchando un tema
-        System.out.println("Escuchando cancion con usuario 1");
-        Thread.sleep(3000);
-        try{
-            IContentService contentService = new ContentService();
+            // Escuchando un tema
+            System.out.println("Escuchando cancion con usuario 1");
+            Thread.sleep(3000);
             System.out.println(contentService.playContent(user2.getId(),140));
-        }catch(Exception e){
-            System.out.println(e);
-        }
 
+            scanner.next();
 
-        scanner.next();
-
-        // Pidiendo actividad
-        System.out.println("Mostrando actividad del usuario 1");
-        Thread.sleep(3000);
-        try {
+            // Pidiendo actividad
+            System.out.println("Mostrando actividad del usuario 1");
+            Thread.sleep(3000);
             System.out.println(userService.getActivity(user2.getId()));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        // Pidiendo artistas de un pais
-
-        System.out.println("Pidiendo artistas de un pais");
-        Thread.sleep(3000);
-
-        try{
-            IArtistService artistService = new ArtistService();
+            // Pidiendo artistas de un pais
+            System.out.println("Pidiendo artistas de un pais");
+            Thread.sleep(3000);
             System.out.println(artistService.findByCountry("Argentina"));
-        }catch(Exception e){
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        //CountryService
-        // Pidiendo por id
-        System.out.println("Pidiendo pais por id 1");
-        Thread.sleep(3000);
-        try {
-            ICountryService countryService = new CountryService();
+            //CountryService
+
+            // Pidiendo por id
+            System.out.println("Pidiendo pais por id 1");
+            Thread.sleep(3000);
             System.out.println(countryService.findOne(1));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        //Pidiendo por nombre
-        System.out.println("Pidiendo pais por nombre");
-        Thread.sleep(3000);
-        try {
-                ICountryService countryService = new CountryService();
-                System.out.println(countryService.findByName("Col"));
-            } catch (Exception e) {
-            System.out.println(e);
-        }
+            //Pidiendo por nombre
+            System.out.println("Pidiendo pais por nombre");
+            Thread.sleep(3000);
+            System.out.println(countryService.findByName("Col"));
 
-        scanner.next();
+            scanner.next();
 
-        //PlaylistDAO
+            //PlaylistDAO
 
-        //Pidiendo una por id
-
-        System.out.println("Pedimos que nos muestre la playlist de id 1");
-        Thread.sleep(3000);
-
-        try {
-            PlaylistService playlistService = new PlaylistService();
+            //Pidiendo una por id
+            System.out.println("Pedimos que nos muestre la playlist de id 1");
+            Thread.sleep(3000);
             System.out.println(playlistService.findOne(1));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        //Pidiendo por nombre
-
-        System.out.println("Pedimos una playlist por nombre (MiPlaylist)");
-        Thread.sleep(3000);
-        try {
-            PlaylistService playlistService = new PlaylistService();
+            //Pidiendo por nombre
+            System.out.println("Pedimos una playlist por nombre (MiPlaylist)");
+            Thread.sleep(3000);
             System.out.println(playlistService.findByName("MiPlaylist"));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        //Pidiendo por user
-        System.out.println("Pedimos las playlist del usuario 1");
-        Thread.sleep(3000);
-        try {
-            PlaylistService playlistService = new PlaylistService();
+            //Pidiendo por user
+            System.out.println("Pedimos las playlist del usuario 1");
+            Thread.sleep(3000);
             System.out.println(playlistService.findByUserId(user2.getId()));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-
-        //Borrando una playlist
-        System.out.println("Borramos la playlist 'Gym' de id 3");
-        Thread.sleep(3000);
-        try {
-            PlaylistService playlistService = new PlaylistService();
+            //Borrando una playlist
+            System.out.println("Borramos la playlist 'Gym' de id 3");
+            Thread.sleep(3000);
             System.out.println(playlistService.delete(3));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-
-        //Creando una playlist
-        System.out.println("Creamos la playlist 'Chill'");
-        Thread.sleep(3000);
-        try {
-            PlaylistService playlistService = new PlaylistService();
+            //Creando una playlist
+            System.out.println("Creamos la playlist 'Chill'");
+            Thread.sleep(3000);
             System.out.println(playlistService.create(new PlaylistDTO("Chill", 1)));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        System.out.println("Le metemos canciones a la playlist 'Chill'");
-        Thread.sleep(3000);
-        //Metiendole contenido a playlist
-
-        try {
-            PlaylistService playlistService = new PlaylistService();
+            //Metiendole contenido a playlist
+            System.out.println("Le metemos canciones a la playlist 'Chill'");
+            Thread.sleep(3000);
             System.out.println(playlistService.insertContent(4, user2.getId(), 128));
             System.out.println(playlistService.insertContent(4, user2.getId(), 129));
             System.out.println(playlistService.insertContent(4, user2.getId(), 130));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        //Metiendole lista de contenido a playlist
-        System.out.println("Metemos una lista de canciones a una playlist");
-        Thread.sleep(3000);
-        try {
-            PlaylistService playlistService = new PlaylistService();
+            //Metiendole lista de contenido a playlist
+            System.out.println("Metemos una lista de canciones a una playlist");
+            Thread.sleep(3000);
             List<Integer> contentList = new ArrayList<>();
             for(int i = 145; i < 162; i++) {
                 contentList.add(i);
             }
             System.out.println(playlistService.insertContent(4,user2.getId(), contentList));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        // Actualizando una playlist
-        System.out.println("Cambiamos el nombre de la playlist 'Chill' a 'Relax' del usuario 1");
-        Thread.sleep(3000);
-        try {
-            PlaylistService playlistService = new PlaylistService();
+            // Actualizando una playlist
+            System.out.println("Cambiamos el nombre de la playlist 'Chill' a 'Relax' del usuario");
+            Thread.sleep(3000);
             System.out.println(playlistService.update(new PlaylistDTO(4,"Relax", user2.getId())));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
-        scanner.next();
+            scanner.next();
 
-        // getMostListenedGenrePlaylist
-        System.out.println("Generamos una playlist en base al genero mas escuchado del usuario 1");
-        Thread.sleep(3000);
-        try{
-            PlaylistService playlistService = new PlaylistService();
+            // Obtener una recomendacion de playlist en base al genero mas escuchado del user
+            System.out.println("Generamos una playlist en base al genero mas escuchado del usuario");
+            Thread.sleep(3000);
             System.out.println(playlistService.getMostListenedGenrePlaylist(user2.getId()));
-        }catch(Exception e){
+
+            scanner.next();
+
+            // Obtener una recomendacion de playlist en base a nuestro top 20 de temas mas escuchados
+            System.out.println("Generamos una playlist en base a las canciones mas escuchadas del usuario");
+            Thread.sleep(3000);
+            System.out.println(playlistService.getMostListenedSongsPlaylistByUserId(user2.getId()));
+
+        } catch(Exception e) {
             System.out.println(e);
         }
 

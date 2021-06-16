@@ -86,6 +86,10 @@ public class PlaylistService implements IPlaylistService {
         return dao.getMostListenedGenrePlaylistByUserId(userId);
     }
 
+    public Playlist getMostListenedSongsPlaylistByUserId(int userId) throws SQLException, ValidationException {
+        return dao.getMostListenedSongsPlaylistByUserId(userId);
+    }
+
     private void isPlaylistOwnedByUser(int playlistId, int userId) throws SQLException, ForbiddenAccessException {
         if (dao.findOne(playlistId).getUserId() != userId)
             throw new ForbiddenAccessException("Cannot edit other´s playlists");
