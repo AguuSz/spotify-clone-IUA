@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: spotify-clone
 -- ------------------------------------------------------
--- Server version	8.0.25
+-- Server version	8.0.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,7 +33,7 @@ CREATE TABLE `adds` (
   CONSTRAINT `fk_content_adds` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_playlist_adds` FOREIGN KEY (`id_playlist`) REFERENCES `playlist` (`id_playlist`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_user_adds` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,7 +58,7 @@ CREATE TABLE `album` (
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id_album`),
   UNIQUE KEY `id-album_UNIQUE` (`id_album`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,7 +87,7 @@ CREATE TABLE `artist` (
   UNIQUE KEY `id-artist_UNIQUE` (`id_artist`),
   KEY `fk_country_artist_idx` (`id_country`),
   CONSTRAINT `fk_country_artist` FOREIGN KEY (`id_country`) REFERENCES `country` (`id_country`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `content` (
   KEY `fk_language_content_idx` (`id_language`),
   CONSTRAINT `fk_genre_content` FOREIGN KEY (`id_genre`) REFERENCES `genre` (`id_genre`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `fk_language_content` FOREIGN KEY (`id_language`) REFERENCES `language` (`id_language`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +144,7 @@ CREATE TABLE `country` (
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id_country`),
   UNIQUE KEY `id-country_UNIQUE` (`id_country`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +175,7 @@ CREATE TABLE `device` (
   UNIQUE KEY `id-device_UNIQUE` (`id_device`),
   KEY `fk_user_device_idx` (`id_user`),
   CONSTRAINT `fk_user_device` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,7 +201,7 @@ CREATE TABLE `friends` (
   KEY `fk_friends_user2_idx` (`id_user2`),
   CONSTRAINT `fk_user_friends1` FOREIGN KEY (`id_user1`) REFERENCES `user` (`id_user`),
   CONSTRAINT `fk_user_friends2` FOREIGN KEY (`id_user2`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,7 +226,7 @@ CREATE TABLE `genre` (
   `genre` varchar(45) NOT NULL,
   PRIMARY KEY (`id_genre`),
   UNIQUE KEY `id-genre_UNIQUE` (`id_genre`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +251,7 @@ CREATE TABLE `language` (
   `language` varchar(45) NOT NULL,
   PRIMARY KEY (`id_language`),
   UNIQUE KEY `id-language_UNIQUE` (`id_language`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +279,7 @@ CREATE TABLE `listen` (
   KEY `fk_content_listen_idx` (`id_content`),
   CONSTRAINT `fk_content_listen` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_user_listen` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -288,7 +288,7 @@ CREATE TABLE `listen` (
 
 LOCK TABLES `listen` WRITE;
 /*!40000 ALTER TABLE `listen` DISABLE KEYS */;
-INSERT INTO `listen` VALUES (1,140,'2021-06-15 12:15:59'),(1,141,'2021-06-15 12:17:15'),(1,142,'2021-06-15 12:21:10'),(1,143,'2021-06-15 12:23:11'),(1,144,'2021-06-15 12:24:10'),(1,145,'2021-06-15 12:26:10'),(2,145,'2021-06-15 17:26:10'),(2,145,'2021-06-17 12:06:17'),(3,151,'2021-05-21 18:03:12'),(4,161,'2021-04-02 12:01:11'),(4,162,'2021-04-02 12:05:31'),(4,163,'2021-04-02 12:09:13'),(2,166,'2021-06-17 12:01:11'),(2,187,'2021-06-15 17:31:21');
+INSERT INTO `listen` VALUES (1,140,'2021-05-14 12:15:59'),(1,141,'2021-06-15 12:17:15'),(1,142,'2021-06-15 12:21:10'),(1,143,'2021-06-15 12:23:11'),(1,144,'2021-06-15 12:24:10'),(1,145,'2021-06-15 12:26:10'),(2,145,'2021-06-15 17:26:10'),(2,145,'2021-06-17 12:06:17'),(3,151,'2021-05-21 18:03:12'),(4,161,'2021-04-02 12:01:11'),(4,162,'2021-04-02 12:05:31'),(4,163,'2021-04-02 12:09:13'),(2,166,'2021-06-17 12:01:11'),(2,187,'2021-06-15 17:31:21');
 /*!40000 ALTER TABLE `listen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,7 +307,7 @@ CREATE TABLE `makes` (
   KEY `fk_podcast_makes_idx` (`id_podcast`),
   CONSTRAINT `fk_artist_makes` FOREIGN KEY (`id_artist`) REFERENCES `artist` (`id_artist`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_podcast_makes` FOREIGN KEY (`id_podcast`) REFERENCES `podcast` (`id_content`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -335,7 +335,7 @@ CREATE TABLE `playlist` (
   UNIQUE KEY `id-playlist_UNIQUE` (`id_playlist`),
   KEY `fk_user_playlist_idx` (`id_user`),
   CONSTRAINT `fk_user_playlist` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -361,7 +361,7 @@ CREATE TABLE `podcast` (
   PRIMARY KEY (`id_content`),
   UNIQUE KEY `chapter_UNIQUE` (`chapter`),
   CONSTRAINT `fk_content_podcast` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -388,7 +388,7 @@ CREATE TABLE `prefer` (
   KEY `fk_language_prefer_idx` (`id_language`),
   CONSTRAINT `fk_language_prefer` FOREIGN KEY (`id_language`) REFERENCES `language` (`id_language`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_user_prefer` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -410,16 +410,16 @@ DROP TABLE IF EXISTS `uploads`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `uploads` (
   `id_artist` int NOT NULL,
-  `id_song` int NOT NULL,
+  `id_content` int NOT NULL,
   `id_album` int NOT NULL,
   `date` datetime NOT NULL,
-  PRIMARY KEY (`id_artist`,`id_song`,`id_album`),
+  PRIMARY KEY (`id_artist`,`id_content`,`id_album`),
   KEY `fk_album_uploads_idx` (`id_album`),
-  KEY `fk_content_uploads_idx` (`id_song`),
+  KEY `fk_content_uploads_idx` (`id_content`),
   CONSTRAINT `fk_album_uploads` FOREIGN KEY (`id_album`) REFERENCES `album` (`id_album`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_artist_uploads` FOREIGN KEY (`id_artist`) REFERENCES `artist` (`id_artist`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_content_uploads` FOREIGN KEY (`id_song`) REFERENCES `content` (`id_content`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  CONSTRAINT `fk_content_uploads` FOREIGN KEY (`id_content`) REFERENCES `content` (`id_content`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -451,7 +451,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `id-user_UNIQUE` (`id_user`),
   KEY `fk_country_user_idx` (`id_country`),
   CONSTRAINT `fk_country_user` FOREIGN KEY (`id_country`) REFERENCES `country` (`id_country`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -473,4 +473,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-15 20:20:09
+-- Dump completed on 2021-06-15 21:17:15
