@@ -12,6 +12,11 @@ public class PlaylistDTO {
     private Timestamp createdAt;
     private int userId;
 
+    public PlaylistDTO (String name, int userId) {
+        this.name = name;
+        this.userId = userId;
+    }
+
     public PlaylistDTO (int id, String name, int userId) {
         this.id = id;
         this.name = name;

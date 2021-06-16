@@ -87,7 +87,7 @@ public class PlaylistService implements IPlaylistService {
     }
 
     private void isPlaylistOwnedByUser(int playlistId, int userId) throws SQLException, ForbiddenAccessException {
-        if (dao.findOne(playlistId).getUserId() == userId)
+        if (dao.findOne(playlistId).getUserId() != userId)
             throw new ForbiddenAccessException("Cannot edit other´s playlists");
     }
 }

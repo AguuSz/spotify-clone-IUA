@@ -260,13 +260,11 @@ public class Main {
             System.out.println(e);
         }
 
-        //Actualizando una playlist
-
-        //TODO No funciona, no valida que el usuario es dueno de la playlist
+        // Actualizando una playlist
         System.out.println("Cambiamos el nombre de la playlist 'Chill' a 'Relax'");
         try {
             PlaylistService playlistService = new PlaylistService();
-            System.out.println(playlistService.update(new PlaylistDTO(4,"Relax", 1)));
+            System.out.println(playlistService.update(new PlaylistDTO(4,"Relax", 2)));
         } catch (Exception e) {
             System.out.println(e);
         }
