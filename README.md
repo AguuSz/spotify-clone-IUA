@@ -4,6 +4,16 @@ Proyecto realizado para el Instituto Universitario Aeronautico, especificamente 
 
 Este proyecto consiste en la creacion de un backend lo mas parecido posible al de Spotify, donde podremos crear playlists, obtener sugerencias en base a nuestros gustos musicales y demas.
 
+# Prerequisitos
+Crear en la carpeta raiz una carpeta llamada "conf" y dentro de esta misma crear un archivo llamado "db.properties". En este archivo deberan rellenar con las credenciales para acceder a la base de datos. Aqui un ejemplo de como deberia quedar: 
+```
+# Mysql DB properties
+MYSQL_DB_DRIVER_CLASS=com.mysql.jdbc.Driver
+MYSQL_DB_URL=jdbc:mysql://localhost:3306/spotify-clone
+MYSQL_DB_USERNAME=root
+MYSQL_DB_PASSWORD=wakeboard32
+```
+
 ## Estructura del proyecto
 - **bd**: Dentro de esta carpeta encontraremos los archivos necesarios para crear la base de datos.
     * **datos**: Dentro de esta carpeta encontraremos la data a importar a la BD.
