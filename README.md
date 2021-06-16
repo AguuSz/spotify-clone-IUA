@@ -9,9 +9,9 @@ Crear en la carpeta raiz una carpeta llamada "conf" y dentro de esta misma crear
 ```
 # Mysql DB properties
 MYSQL_DB_DRIVER_CLASS=com.mysql.jdbc.Driver
-MYSQL_DB_URL=jdbc:mysql://localhost:3306/spotify-clone
-MYSQL_DB_USERNAME=root
-MYSQL_DB_PASSWORD=wakeboard32
+MYSQL_DB_URL=jdbc:mysql://localhost:3306/NombreDeLaBD
+MYSQL_DB_USERNAME=IngreseAquiSuUsername
+MYSQL_DB_PASSWORD=IngreseAquiSuPassword
 ```
 
 ## Estructura del proyecto
