@@ -1,10 +1,10 @@
-package main.java.services;
+package services;
 
-import main.java.dao.CountryDAO;
-import main.java.exception.ValidationException;
-import main.java.interfaces.ICountryService;
-import main.java.models.Country;
-import main.java.utils.Validate;
+import dao.CountryDAO;
+import exception.ValidationException;
+import interfaces.ICountryService;
+import models.Country;
+import utils.Validate;
 
 import java.sql.SQLException;
 import java.util.List;

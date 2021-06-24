@@ -1,6 +1,6 @@
-package main.java.models;
+package models;
 
-import main.java.dto.DeviceDTO;
+import dto.DeviceDTO;
 
 import java.sql.Timestamp;
 

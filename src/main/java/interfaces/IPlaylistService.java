@@ -1,10 +1,10 @@
-package main.java.interfaces;
+package interfaces;
 
-import main.java.dto.ContentDTO;
-import main.java.dto.PlaylistDTO;
-import main.java.exception.ForbiddenAccessException;
-import main.java.exception.ValidationException;
-import main.java.models.Playlist;
+import dto.ContentDTO;
+import dto.PlaylistDTO;
+import exception.ForbiddenAccessException;
+import exception.ValidationException;
+import models.Playlist;
 
 import java.sql.SQLException;
 import java.util.List;

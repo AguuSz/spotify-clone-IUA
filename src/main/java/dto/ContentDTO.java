@@ -1,6 +1,6 @@
-package main.java.dto;
+package dto;
 
-import main.java.models.Artist;
+import models.Artist;
 
 import java.sql.Timestamp;
 import java.util.List;

@@ -1,6 +1,6 @@
-package main.java.models;
+package models;
 
-import main.java.dto.UserDTO;
+import dto.UserDTO;
 
 import java.sql.Timestamp;
 import java.util.List;

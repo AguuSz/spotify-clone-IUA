@@ -1,9 +1,9 @@
-package main.java.services;
+package services;
 
-import main.java.dao.UserDAO;
-import main.java.dto.UserDTO;
-import main.java.exception.*;
-import main.java.models.User;
+import dao.UserDAO;
+import dto.UserDTO;
+import exception.*;
+import models.User;
 
 import java.sql.SQLException;
 import java.util.regex.Matcher;

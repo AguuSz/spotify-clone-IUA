@@ -1,10 +1,10 @@
-package main.java.services;
+package services;
 
-import main.java.dao.ArtistDAO;
-import main.java.exception.ValidationException;
-import main.java.interfaces.IArtistService;
-import main.java.models.Artist;
-import main.java.utils.Validate;
+import dao.ArtistDAO;
+import exception.ValidationException;
+import interfaces.IArtistService;
+import models.Artist;
+import utils.Validate;
 
 import java.sql.SQLException;
 import java.util.List;

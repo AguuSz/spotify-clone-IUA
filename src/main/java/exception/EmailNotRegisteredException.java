@@ -1,4 +1,4 @@
-package main.java.exception;
+package exception;
 
 public class EmailNotRegisteredException extends Exception {
     public EmailNotRegisteredException(String message) {

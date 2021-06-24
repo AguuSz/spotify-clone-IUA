@@ -1,7 +1,7 @@
-package main.java.dao;
+package dao;
 
-import main.java.conf.DataSourceFactory;
-import main.java.models.Artist;
+import conf.DataSourceFactory;
+import models.Artist;
 
 import javax.sql.DataSource;
 import java.sql.*;

@@ -1,10 +1,10 @@
-package main.java.dao;
+package dao;
 
-import main.java.conf.DataSourceFactory;
-import main.java.exception.ValidationException;
-import main.java.models.Artist;
-import main.java.models.Content;
-import main.java.utils.DateTime;
+import conf.DataSourceFactory;
+import exception.ValidationException;
+import models.Artist;
+import models.Content;
+import utils.DateTime;
 
 import javax.sql.DataSource;
 import java.sql.*;

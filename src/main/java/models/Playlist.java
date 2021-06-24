@@ -1,6 +1,6 @@
-package main.java.models;
+package models;
 
-import main.java.dto.PlaylistDTO;
+import dto.PlaylistDTO;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;

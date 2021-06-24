@@ -1,6 +1,6 @@
-package main.java.utils;
+package utils;
 
-import main.java.exception.ValidationException;
+import exception.ValidationException;
 
 import java.sql.Date;
 import java.sql.Timestamp;

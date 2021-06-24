@@ -1,4 +1,4 @@
-package main.java.services;
+package services;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class PasswordService {

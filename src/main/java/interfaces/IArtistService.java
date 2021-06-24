@@ -1,7 +1,7 @@
-package main.java.interfaces;
+package interfaces;
 
-import main.java.exception.ValidationException;
-import main.java.models.Artist;
+import exception.ValidationException;
+import models.Artist;
 
 import java.sql.SQLException;
 import java.util.List;

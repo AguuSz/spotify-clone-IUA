@@ -1,7 +1,7 @@
-package main.java.dto;
+package dto;
 
-import main.java.exception.ValidationException;
-import main.java.utils.Validate;
+import exception.ValidationException;
+import utils.Validate;
 
 import java.sql.Date;
 import java.sql.Timestamp;

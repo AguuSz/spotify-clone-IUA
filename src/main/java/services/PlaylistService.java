@@ -1,14 +1,14 @@
-package main.java.services;
+package services;
 
-import main.java.dao.PlaylistDAO;
-import main.java.dto.ContentDTO;
-import main.java.dto.PlaylistDTO;
-import main.java.exception.ForbiddenAccessException;
-import main.java.exception.ValidationException;
-import main.java.interfaces.IPlaylistService;
-import main.java.models.Playlist;
-import main.java.utils.DateTime;
-import main.java.utils.Validate;
+import dao.PlaylistDAO;
+import dto.ContentDTO;
+import dto.PlaylistDTO;
+import exception.ForbiddenAccessException;
+import exception.ValidationException;
+import interfaces.IPlaylistService;
+import models.Playlist;
+import utils.DateTime;
+import utils.Validate;
 
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;

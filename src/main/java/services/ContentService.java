@@ -1,10 +1,10 @@
-package main.java.services;
+package services;
 
-import main.java.dao.ContentDAO;
-import main.java.exception.ValidationException;
-import main.java.interfaces.IContentService;
-import main.java.models.Content;
-import main.java.utils.Validate;
+import dao.ContentDAO;
+import exception.ValidationException;
+import interfaces.IContentService;
+import models.Content;
+import utils.Validate;
 
 import java.sql.SQLException;
 import java.util.List;

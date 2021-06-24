@@ -1,13 +1,13 @@
-package main.java.dao;
+package dao;
 
-import main.java.conf.DataSourceFactory;
-import main.java.dto.ContentDTO;
-import main.java.dto.PlaylistDTO;
-import main.java.exception.ValidationException;
-import main.java.models.Content;
-import main.java.models.Playlist;
-import main.java.services.ContentService;
-import main.java.utils.DateTime;
+import conf.DataSourceFactory;
+import dto.ContentDTO;
+import dto.PlaylistDTO;
+import exception.ValidationException;
+import models.Content;
+import models.Playlist;
+import services.ContentService;
+import utils.DateTime;
 
 import javax.sql.DataSource;
 import java.sql.*;

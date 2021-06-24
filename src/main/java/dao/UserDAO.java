@@ -1,10 +1,10 @@
-package main.java.dao;
+package dao;
 
-import main.java.conf.DataSourceFactory;
-import main.java.dto.UserDTO;
-import main.java.models.Activity;
-import main.java.models.Content;
-import main.java.models.User;
+import conf.DataSourceFactory;
+import dto.UserDTO;
+import models.Activity;
+import models.Content;
+import models.User;
 
 import javax.sql.DataSource;
 import java.sql.*;

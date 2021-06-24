@@ -1,12 +1,12 @@
-package main.java.services;
+package services;
 
-import main.java.dao.UserDAO;
-import main.java.dto.UserDTO;
-import main.java.exception.ValidationException;
-import main.java.interfaces.IUserService;
-import main.java.models.Activity;
-import main.java.models.User;
-import main.java.utils.Validate;
+import dao.UserDAO;
+import dto.UserDTO;
+import exception.ValidationException;
+import interfaces.IUserService;
+import models.Activity;
+import models.User;
+import utils.Validate;
 
 import java.sql.SQLException;
 import java.util.List;

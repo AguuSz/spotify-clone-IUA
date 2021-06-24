@@ -1,4 +1,4 @@
-package main.java.conf;
+package conf;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 

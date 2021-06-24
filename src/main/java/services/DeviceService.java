@@ -1,11 +1,11 @@
-package main.java.services;
+package services;
 
-import main.java.dao.DeviceDAO;
-import main.java.dto.DeviceDTO;
-import main.java.exception.ValidationException;
-import main.java.interfaces.IDeviceService;
-import main.java.models.Device;
-import main.java.utils.Validate;
+import dao.DeviceDAO;
+import dto.DeviceDTO;
+import exception.ValidationException;
+import interfaces.IDeviceService;
+import models.Device;
+import utils.Validate;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 import javax.swing.text.DateFormatter;
 import java.sql.Time;

@@ -1,4 +1,4 @@
-package main.java.exception;
+package exception;
 
 public class InvalidEmailException extends Exception{
     public InvalidEmailException(String message) {

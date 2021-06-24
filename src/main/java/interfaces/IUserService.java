@@ -1,9 +1,9 @@
-package main.java.interfaces;
+package interfaces;
 
-import main.java.dto.UserDTO;
-import main.java.exception.ValidationException;
-import main.java.models.Activity;
-import main.java.models.User;
+import dto.UserDTO;
+import exception.ValidationException;
+import models.Activity;
+import models.User;
 
 import java.sql.SQLException;
 import java.util.List;
