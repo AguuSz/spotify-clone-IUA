@@ -1,4 +1,5 @@
 import controllers.PlaylistController;
+import controllers.ArtistController;
 import utils.Paths;
 
 import static spark.Spark.*;
@@ -23,5 +24,10 @@ public class Main {
         delete(Paths.Playlists.delete, PlaylistController.delete);
         put(Paths.Playlists.update, PlaylistController.update);
 
+        // Artists
+        get(Paths.Artists.getAll, ArtistController.getAll);
+        get(Paths.Artists.findOne, ArtistController.findOne);
+        get(Paths.Artists.findByName, ArtistController.findByName);
+        get(Paths.Artists.findByCountry, ArtistController.findByCountry);
     }
 }

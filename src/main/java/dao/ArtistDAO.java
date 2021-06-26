@@ -15,7 +15,7 @@ public class ArtistDAO {
     //  READ
     public Artist findOne(int id) throws SQLException {
 
-        String QUERY = "SELECT id_artist, stage_name, country FROM artist INNER JOIN country ON artist.id_country = country.id_country WHERE id_artist = ?;";
+        String QUERY = "SELECT id_artist, stage_name, country.id_country, country.name FROM artist INNER JOIN country ON artist.id_country = country.id_country WHERE id_artist = ?;";
         Connection connection = dataSource.getConnection();
         Artist artist = null;
 
@@ -31,7 +31,7 @@ public class ArtistDAO {
                 artist = new Artist();
                 artist.setId(rs.getInt("id_artist"));
                 artist.setName(rs.getString("stage_name"));
-                artist.setCountry(rs.getString("country"));
+                artist.setCountry(rs.getString("name"));
             }
 
         }
@@ -40,7 +40,7 @@ public class ArtistDAO {
     }
 
     public List<Artist> findByName(String name) throws SQLException {
-        String QUERY = "SELECT id_artist, stage_name, id_country FROM artist INNER JOIN country ON artist.idcountry = country.idcountry WHERE name LIKE ?;";
+        String QUERY = "SELECT id_artist, stage_name, country.id_country, country.name FROM artist INNER JOIN country ON artist.id_country = country.id_country WHERE stage_name LIKE ?;";
         Connection connection = dataSource.getConnection();
         List<Artist> artistList = new ArrayList<>();
 
@@ -56,7 +56,7 @@ public class ArtistDAO {
                 Artist artist = new Artist();
                 artist.setId(rs.getInt("id_artist"));
                 artist.setName(rs.getString("stage_name"));
-                artist.setCountry(rs.getString("country"));
+                artist.setCountry(rs.getString("name"));
                 artistList.add(artist);
             }
         }
@@ -89,7 +89,7 @@ public class ArtistDAO {
 
     public List<Artist> getAll() throws SQLException {
 
-        String QUERY = "SELECT id_artist, stage_name, country FROM content;";
+        String QUERY = "SELECT id_artist, stage_name, country.name FROM artist INNER JOIN country ON country.id_country = artist.id_country;";
         Connection connection = dataSource.getConnection();
         List<Artist> artistList = new ArrayList<>();
 
@@ -103,7 +103,7 @@ public class ArtistDAO {
                 Artist artist = new Artist();
                 artist.setId(rs.getInt("id_artist"));
                 artist.setName(rs.getString("stage_name"));
-                artist.setCountry(rs.getString("country"));
+                artist.setCountry(rs.getString("name"));
                 artistList.add(artist);
             }
         }
