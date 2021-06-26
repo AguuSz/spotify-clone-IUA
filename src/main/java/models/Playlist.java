@@ -1,13 +1,14 @@
 package models;
 
 import dto.PlaylistDTO;
+import interfaces.Validable;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Playlist {
+public class Playlist implements Validable {
     private int id;
     private int userId;
     private String name;
@@ -19,6 +20,22 @@ public class Playlist {
 
     public Playlist(PlaylistDTO dto) {
         this.name = dto.getName();
+    }
+
+    @Override
+    public boolean isValid() {
+        if (name == null || userId == 0) return false;
+        return !name.isEmpty();
+    }
+
+    public boolean isValidForUpdates() {
+        if (id == 0 || userId == 0) return false;
+        return isValid();
+    }
+
+    public boolean isValidForInsertingContent() {
+        if (id == 0 || userId == 0) return false;
+        return !contentList.isEmpty();
     }
 
     public int getId() {

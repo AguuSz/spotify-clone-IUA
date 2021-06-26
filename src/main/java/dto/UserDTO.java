@@ -1,8 +1,10 @@
 package dto;
 
+import interfaces.Validable;
+
 import java.sql.Timestamp;
 
-public class UserDTO {
+public class UserDTO implements Validable {
     private int id;
     private String name;
     private String lastName;
@@ -74,6 +76,13 @@ public class UserDTO {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public boolean isValid() {
+        return
+                name != null && !name.isEmpty() &&
+                email != null && !email.isEmpty() &&
+                password != null && !password.isEmpty();
     }
 
 }

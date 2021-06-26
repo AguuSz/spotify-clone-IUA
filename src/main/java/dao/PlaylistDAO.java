@@ -70,7 +70,7 @@ public class PlaylistDAO {
 
     public List<Playlist> getAll() throws SQLException {
 
-        String QUERY = "SELECT id_playlist, name FROM playlist;";
+        String QUERY = "SELECT * FROM playlist;";
         Connection connection = dataSource.getConnection();
         List<Playlist> playlists = new ArrayList<>();
 
@@ -84,6 +84,8 @@ public class PlaylistDAO {
             while (rs.next()) {
                 Playlist playlist = new Playlist();
                 playlist.setId(rs.getInt("id_playlist"));
+                playlist.setCreatedAt(rs.getTimestamp("created_date"));
+                playlist.setUserId(rs.getInt("id_user"));
                 playlist.setName(rs.getString("name"));
                 playlist.setContentList(findContentByPlayList(playlist.getId(), connection));
                 playlists.add(playlist);
@@ -107,6 +109,7 @@ public class PlaylistDAO {
             while (rs.next()) {
                 Playlist playlist = new Playlist();
                 playlist.setId(rs.getInt("id_playlist"));
+                playlist.setUserId(id);
                 playlist.setName(rs.getString("name"));
                 playlist.setContentList(findContentByPlayList(playlist.getId(), connection));
                 playlists.add(playlist);

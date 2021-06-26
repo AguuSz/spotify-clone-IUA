@@ -1,11 +1,12 @@
 package dto;
 
+import interfaces.Validable;
 import models.Artist;
 
 import java.sql.Timestamp;
 import java.util.List;
 
-public class ContentDTO {
+public class ContentDTO implements Validable {
     private int id;
     private String name;
     private int length;
@@ -24,6 +25,11 @@ public class ContentDTO {
         this.length = length;
         this.genre = genre;
         this.language = language;
+    }
+
+    @Override
+    public boolean isValid() {
+        return id != 0;
     }
 
     public int getId() {
