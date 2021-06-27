@@ -40,10 +40,14 @@ public class ContentController {
         List<Content> content = contentService.findByLanguage(request.params(":language"));
         return JSONTransformer.toJson(content);
     };
+<<<<<<< HEAD
     
     public static Route playContent = (Request request, Response response) -> {
         response.type("application/json");
         Content content = contentService.playContent(Integer.parseInt(request.params(":userId")), Integer.parseInt(request.params(":contentId")));
         return JSONTransformer.toJson(content);
     };
+=======
+
+>>>>>>> 61c24408d137a7e2fabb110ee6d5521ddb004c2a
 }

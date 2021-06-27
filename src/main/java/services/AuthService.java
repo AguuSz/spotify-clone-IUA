@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class AuthService {
     UserDAO userDAO = new UserDAO();
 
-    public User login(String email, String password) throws SQLException, EmailNotRegisteredException {
+    public User login(String email, String password) throws SQLException, EmailNotRegisteredException, InvalidPasswordException {
         if (!userExists(email)) throw new EmailNotRegisteredException("El usuario no existe. Intente registrarse primero.");
         User user = this.userDAO.findByEmail(email);
 
@@ -20,8 +20,7 @@ public class AuthService {
             // Si matchean, entonces es porque el login es correcto
             return user;
         } else {
-            System.out.println("Credenciales incorrectas.");
-            return null;
+            throw new InvalidPasswordException("Credenciales incorrectas.");
         }
     }
 

@@ -22,6 +22,13 @@ public class UserDTO implements Validable {
         this.country = country;
     }
 
+    public UserDTO(AuthDTO authDTO) {
+        // Utilizado para registrarse
+        this.email = authDTO.getEmail();
+        this.password = authDTO.getPassword();
+        this.country = authDTO.getCountry();
+    }
+
     public int getId() {
         return id;
     }

@@ -2,11 +2,12 @@ import controllers.ContentController;
 import controllers.PlaylistController;
 import controllers.ArtistController;
 import exception.ValidationException;
-import services.ArtistService;
-import services.ContentService;
+
 import utils.Paths;
 
 import java.sql.SQLException;
+import controllers.AuthController;
+
 
 import static spark.Spark.*;
 
@@ -16,9 +17,14 @@ public class Main {
         port(port);
         System.out.println("Servidor escuchando en: localhost:" + port);
 
-//        // Setteando las rutas
-//
-        // Playlists
+
+        // Setteando las rutas
+
+        // Auth
+        post(Paths.Auth.login, AuthController.login);
+        post(Paths.Auth.register, AuthController.register);
+
+         // Playlists
         get(Paths.Playlists.getAll, PlaylistController.getAll);
         get(Paths.Playlists.findOne, PlaylistController.findOne);
         get(Paths.Playlists.findByName, PlaylistController.findByName);
