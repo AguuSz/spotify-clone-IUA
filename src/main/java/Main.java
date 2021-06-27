@@ -1,17 +1,23 @@
+import controllers.ContentController;
 import controllers.PlaylistController;
 import controllers.ArtistController;
+import exception.ValidationException;
+import services.ArtistService;
+import services.ContentService;
 import utils.Paths;
+
+import java.sql.SQLException;
 
 import static spark.Spark.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ValidationException, SQLException {
         int port = 8080;
         port(port);
         System.out.println("Servidor escuchando en: localhost:" + port);
 
-        // Setteando las rutas
-
+//        // Setteando las rutas
+//
         // Playlists
         get(Paths.Playlists.getAll, PlaylistController.getAll);
         get(Paths.Playlists.findOne, PlaylistController.findOne);
@@ -29,5 +35,14 @@ public class Main {
         get(Paths.Artists.findOne, ArtistController.findOne);
         get(Paths.Artists.findByName, ArtistController.findByName);
         get(Paths.Artists.findByCountry, ArtistController.findByCountry);
+
+        //Content
+        get(Paths.Content.findByArtist, ContentController.findByArtist);
+        get(Paths.Content.findOne, ContentController.findOne);
+        get(Paths.Content.findByName, ContentController.findByName);
+        get(Paths.Content.findByGenre, ContentController.findByGenre);
+        get(Paths.Content.findByLanguage, ContentController.findByLanguage);
+        get(Paths.Content.playContent, ContentController.playContent);
+
     }
 }

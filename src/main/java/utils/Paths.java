@@ -37,4 +37,14 @@ public class Paths {
         public static final String getAll = "/playlist/getAll";
     }
 
+    public static class Content {
+        public static final String findOne = "/content/findOne/:contentId";
+        public static final String findByName = "/content/findByName/:name";
+        public static final String findByGenre = "/content/findByGenre/:genre";
+        public static final String findByArtist = "/content/findByArtist/:artist";
+        public static final String findByLanguage = "/content/findByLanguage/:language";
+        public static final String playContent = "playContent/:userId/:contentId";
+
+    }
+
 }
