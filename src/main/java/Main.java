@@ -1,6 +1,11 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+import controllers.AuthController;
 import controllers.PlaylistController;
 import controllers.ArtistController;
+import dto.AuthDTO;
 import utils.Paths;
+
+import java.nio.file.Path;
 
 import static spark.Spark.*;
 
@@ -11,6 +16,10 @@ public class Main {
         System.out.println("Servidor escuchando en: localhost:" + port);
 
         // Setteando las rutas
+
+        // Auth
+        post(Paths.Auth.login, AuthController.login);
+        post(Paths.Auth.register, AuthController.register);
 
         // Playlists
         get(Paths.Playlists.getAll, PlaylistController.getAll);
