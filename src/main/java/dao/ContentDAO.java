@@ -18,7 +18,7 @@ public class ContentDAO {
     //  READ
     public Content findOne(int id) throws SQLException {
 
-        String QUERY = "SELECT id_content, name, length, genre, language FROM content INNER JOIN genre ON content.id_genre = content.id_genre " +
+        String QUERY = "SELECT id_content, name, length, genre, language FROM content INNER JOIN genre ON genre.id_genre = content.id_genre " +
                 "INNER JOIN language ON content.id_language = language.id_language " +
                 "WHERE id_content = ?;";
         Connection connection = dataSource.getConnection();
@@ -47,7 +47,7 @@ public class ContentDAO {
 
     public List<Content> findByName(String name) throws SQLException {
         String QUERY = "SELECT id_content, name, length, genre, language " +
-                "FROM content INNER JOIN genre ON content.id_genre = content.id_genre " +
+                "FROM content INNER JOIN genre ON content.id_genre = genre.id_genre " +
                 "INNER JOIN language ON content.id_language = language.id_language" +
                 "WHERE name LIKE ?;";
         Connection connection = dataSource.getConnection();
