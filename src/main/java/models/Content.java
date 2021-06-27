@@ -1,10 +1,12 @@
 package models;
 
+import interfaces.Validable;
+
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
-public class Content {
+public class Content implements Validable {
     private int id;
     private String name;
     private int length;
@@ -105,5 +107,10 @@ public class Content {
                 "\n\tLanguage = '" + language + '\'' +
                 "\n\tArtists = " + artists +
                 "\n\tAlbums = " + albums + "\n}";
+    }
+    @Override
+    public boolean isValid() {
+        if (name == null || id == 0 || artists.isEmpty()) return false;
+        return !albums.isEmpty();
     }
 }
