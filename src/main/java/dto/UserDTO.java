@@ -1,6 +1,7 @@
 package dto;
 
 import interfaces.Validable;
+import models.User;
 
 import java.sql.Timestamp;
 
@@ -12,6 +13,15 @@ public class UserDTO implements Validable {
     private Timestamp birthdate;
     private String password;
     private String country;
+
+    public UserDTO(User user) {
+        this.id = user.getId();
+        this.name = user.getName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.birthdate = user.getBirthdate();
+        this.country = user.getCountry();
+    }
 
     public UserDTO(String name, String lastName, String email, Timestamp birthdate, String password, String country) {
         this.name = name;
@@ -88,8 +98,7 @@ public class UserDTO implements Validable {
     public boolean isValid() {
         return
                 name != null && !name.isEmpty() &&
-                email != null && !email.isEmpty() &&
-                password != null && !password.isEmpty();
+                email != null && !email.isEmpty();
     }
 
 }

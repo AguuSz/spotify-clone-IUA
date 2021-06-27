@@ -1,12 +1,13 @@
 package models;
 
 import dto.UserDTO;
+import interfaces.Validable;
 
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
-public class User {
+public class User implements Validable {
 
     private int id;
     private String name;
@@ -30,6 +31,13 @@ public class User {
         this.password = dto.getPassword();
         this.country = dto.getCountry();
     }
+
+    @Override
+    public boolean isValid() {
+        if (name == null || id == 0) return false;
+        return !name.isEmpty();
+    }
+
     public int getId() {
         return id;
     }

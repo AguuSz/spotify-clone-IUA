@@ -1,5 +1,6 @@
 import controllers.ContentController;
 import controllers.PlaylistController;
+import controllers.UserController;
 import controllers.ArtistController;
 import exception.ValidationException;
 
@@ -35,6 +36,14 @@ public class Main {
         post(Paths.Playlists.insertContent, PlaylistController.insertContent);
         delete(Paths.Playlists.delete, PlaylistController.delete);
         put(Paths.Playlists.update, PlaylistController.update);
+
+        //User
+        get(Paths.Users.findOne, UserController.findOne);
+        get(Paths.Users.findOneByEmail, UserController.findOneByEmail);
+        get(Paths.Users.findByName, UserController.findByName);
+        put(Paths.Users.update, UserController.update);
+        delete(Paths.Users.delete, UserController.delete);
+        get(Paths.Users.getActivity, UserController.getActivity);
 
         // Artists
         get(Paths.Artists.getAll, ArtistController.getAll);

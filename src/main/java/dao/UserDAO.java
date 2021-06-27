@@ -4,6 +4,7 @@ import conf.DataSourceFactory;
 import dto.UserDTO;
 import models.Activity;
 import models.Content;
+import models.Country;
 import models.User;
 
 import javax.sql.DataSource;
@@ -189,25 +190,26 @@ public class UserDAO {
     }
 
     public User update(UserDTO userDTO) throws SQLException {
-        String QUERY = "UPDATE `user` SET name = ?, SET last_name = ?, SET email = ?, SET birthdate = ?, SET password = ?, SET id_country = ? WHERE id_user = ?;";
+        String QUERY = "UPDATE `user` SET name = ?, last_name = ?, email = ?, birthdate = ?, id_country = ? WHERE id_user = ?;";
         Connection connection = dataSource.getConnection();
         User user = null;
-
+        Country country = new CountryDAO().findByName(userDTO.getCountry()).get(0);
         try (connection) {
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, userDTO.getName());
             preparedStatement.setString(2, userDTO.getLastName());
             preparedStatement.setString(3, userDTO.getEmail());
             preparedStatement.setTimestamp(4, userDTO.getBirthdate());
-            preparedStatement.setString(5, userDTO.getPassword());
-            preparedStatement.setInt(6, new CountryDAO().findByName(userDTO.getCountry()).get(0).getId());
-            preparedStatement.setInt(7, userDTO.getId());
+            preparedStatement.setInt(5, country.getId());
+            preparedStatement.setInt(6, userDTO.getId());
 
             System.out.println(preparedStatement);
 
             preparedStatement.executeUpdate();
 
             user = new User(userDTO);
+            user.setCountry(country.getName());
+            user.setId(userDTO.getId());
         }
         return user;
     }
